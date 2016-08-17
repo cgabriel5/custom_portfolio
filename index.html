@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+    <!-- [font awesome](http://fontawesome.io/icon/external-link-square/) -->
+    <link href="libs/font_awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- [emoticons source](https://github.com/Ranks/emojione) -->
+    <link href="https://cdn.jsdelivr.net/emojione/2.2.4/assets/css/emojione.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/emojione/2.2.4/lib/js/emojione.min.js"></script>
+    <script src="js/app.js"></script>
+    <title>Custom Portfolio</title>
+</head>
+
+<body>
+    <div class="portfolio-wrapper">
+        <!-- HEADER CONTENT -->
+        <header class="header-wrapper position-center">
+            <div class="header-logo-wrapper unselectable"></div>
+            <nav class="nav-wrapper">
+                <div class="nav-expanded-wrapper">
+                    <div class="nav-item nav-current unselectable" data-delegation="nav_home,nav_tab_reset;stop" id="nav-home">
+                        home
+                    </div>
+                    <div class="nav-item unselectable" data-delegation="nav_works,nav_tab_reset;stop" id="nav-works">
+                        works
+                    </div>
+                    <!-- TODO: link/embed resume -->
+                    <!-- <div class="nav-item unselectable" data-delegation="nav_resume;stop" id="nav-resume">resume</div> -->
+                    <div class="nav-item unselectable hidden" data-delegation="nav_contact;stop" id="nav-contact">
+                        contact
+                    </div>
+                </div>
+                <div class="nav-compact-wrapper unselectable" data-delegation="hamburger_menu,cache_popup;stop" id="nav-hamburger-menu">
+                    <i aria-hidden="true" class="fa fa-bars"></i>
+                </div>
+                <div class="popup popup-menu-wrapper hidden unselectable" data-delegation="hamburger_menu;stop" id="popup-menu-wrapper">
+                    <ul class="ul-reset">
+                        <li class="popup-item" data-delegation="nav_popup_home;" data-syncid="nav-home" id="nav-popup-home">home</li>
+                        <li class="popup-item" data-delegation="nav_popup_works;" data-syncid="nav-works" id="nav-popup-works">works</li>
+                        <!-- TODO: link/embed resume -->
+                        <!-- <li class="popup-item" data-delegation="nav_popup_resume;" data-syncid="nav-resume" id="nav-popup-resume">resume</li> -->
+                        <li class="popup-item hidden" data-delegation="nav_popup_contact;" data-syncid="nav-contact" id="nav-popup-contact">contact</li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- MAIN CONTENT -->
+        <main class="main-content-wrapper position-center">
+            <div class="section-aboutme-wrapper hidden animate-fadein" id="section-aboutme-wrapper">
+                <div class="message-title">
+                    Well, Hello There!
+                </div>
+                <p class="message-text">My name is John Doe. I'm an aspiring front-end web developer who <span class="emoticon-shortname">:heart_decoration:</span>s the Web and UI. I like to keep things simple while still elegant and clean.</p>
+                <p class="message-text">Currently, I'm unemployed (<span class="emoticon-shortname">:sob:</span>) and available for hire (<span class="emoticon-shortname">:smiley:</span>). I'm open for contracted, full-time, or part-time work. Check out my work to see what I can do!</p>
+            </div>
+            <div class="section-works-wrapper hidden animate-fadein" id="section-works-wrapper">
+                <div class="message-title">
+                    Featured Work
+                </div>
+                <p class="message-text">Listed below are some of my recent works. Feel free to check them out!</p>
+                <p class="message-text message-text-workcallout">Interested in hiring me? Want to work together? Have projects needed to be brought to life? <span class="contact-link" data-delegation="nav_contact;stop">Blast an email my way</span>. I'm ready to hear from you! <span class="emoticon-shortname">:nerd:</span></p>
+                <!-- TODO: add completed projects here. the ones shown are just placeholders. -->
+                <div class="projects-wrapper" id="projects-wrapper">
+                    <div class="project-item-wrapper">
+                        <div class="project-item-innerwrapper">
+                            <div class="project-img-wrapper">
+                                <picture><img alt="appify app" class="project-img undraggable" draggable="false" src="img/projects/appify.jpg"></picture>
+                            </div>
+                            <div class="project-info-wrapper">
+                                <span class="project-name unselectable">Appify</span><a href="https://github.com/udacity/Appify/" class="project-link" target="_blank"><span class="project-link-external"><i aria-hidden="true" class="fa fa-external-link-square"></i></span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-item-wrapper">
+                        <div class="project-item-innerwrapper">
+                            <div class="project-img-wrapper">
+                                <picture><img alt="sunflower app" class="project-img undraggable" draggable="false" src="img/projects/sunflower.jpg"></picture>
+                            </div>
+                            <div class="project-info-wrapper">
+                                <span class="project-name unselectable">Sunflower</span><a href="https://github.com/udacity/Sunflower/" class="project-link" target="_blank"><span class="project-link-external"><i aria-hidden="true" class="fa fa-external-link-square"></i></span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-item-wrapper">
+                        <div class="project-item-innerwrapper">
+                            <div class="project-img-wrapper">
+                                <picture><img alt="bokeh app" class="project-img undraggable" draggable="false" src="img/projects/bokeh.jpg"></picture>
+                            </div>
+                            <div class="project-info-wrapper">
+                                <span class="project-name unselectable">Bokeh</span><a href="https://github.com/udacity/Bokeh/" class="project-link" target="_blank"><span class="project-link-external"><i aria-hidden="true" class="fa fa-external-link-square"></i></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- FOOTER CONTENT -->
+        <footer class="footer-wrapper">
+            <!-- [icons source](https://www.iconfinder.com/iconsets/black-white-social-media) -->
+            <!-- [creator](https://www.iconfinder.com/alfredoh) -->
+            <!-- [license](https://creativecommons.org/licenses/by/3.0/) -->
+            <div class="contact-wrapper">
+                <div class="contact-logo-wrapper">
+                    <picture><img alt="location icon" class="contact-logo-img undraggable" draggable="false" src="img/icons/location.svg"></picture>
+                </div>
+                <div class="contact-text">
+                    Los Angeles, CA
+                </div>
+            </div>
+            <div class="contact-wrapper">
+                <a class="contact-link" href="https://github.com/cgabriel5" target="_blank">
+                    <div class="contact-logo-wrapper">
+                        <picture><img alt="github icon" class="contact-logo-img undraggable" draggable="false" src="img/icons/github.svg"></picture>
+                    </div>
+                    <div class="contact-text responsive-text-hideable">
+                        GitHub
+                    </div>
+                </a>
+            </div>
+            <div class="contact-wrapper">
+                <a class="contact-link" href="mailto:johndoe@example.com" rel="nofollow">
+                    <div class="contact-logo-wrapper">
+                        <picture><img alt="email icon" class="contact-logo-img undraggable" draggable="false" src="img/icons/email.svg"></picture>
+                    </div>
+                    <div class="contact-text responsive-text-hideable">
+                        johndoe@example.com
+                    </div>
+                </a>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
