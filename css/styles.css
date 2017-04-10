@@ -1,4 +1,6 @@
 /* [----- CSS.RESET.START -----] */
+
+
 /* [box_sizing.styles](https://css-tricks.com/box-sizing/) */
 
 html {
@@ -22,7 +24,10 @@ body {
     outline: none;
 }
 
+
 /* [----- CSS.RESET.END -----] */
+
+
 /* [----- CSS.SITE.STYLES.START -----] */
 
 .portfolio-wrapper {
@@ -33,6 +38,11 @@ body {
     margin: 0;
     -ms-flex-direction: column;
 }
+
+.ios-click-fix {
+    cursor: pointer;
+}
+
 
 /* [header.styles] */
 
@@ -64,6 +74,7 @@ body {
     -ms-flex-align: center;
     align-items: center;
 }
+
 
 /* [header.nav.styles] */
 
@@ -114,6 +125,7 @@ body {
     color: #cbcbcb;
 }
 
+
 /* [popup.styles] */
 
 .popup {
@@ -151,6 +163,7 @@ body {
     margin: 30px 0 0 -100px;
 }
 
+
 /* [ul.styles] */
 
 .ul-reset {
@@ -158,6 +171,7 @@ body {
     padding: 0;
     list-style: none;
 }
+
 
 /* [main.styles] */
 
@@ -184,6 +198,7 @@ body {
     justify-content: space-between;
 }
 
+
 /* [messages.styles] */
 
 .message-title {
@@ -209,6 +224,7 @@ body {
     border-radius: 5px;
     background: #f6f6f6;
 }
+
 
 /* [project.styles] */
 
@@ -258,6 +274,7 @@ body {
     color: #fff;
 }
 
+
 /* [footer.styles] */
 
 .footer-wrapper {
@@ -302,6 +319,7 @@ body {
     color: #08c;
 }
 
+
 /* [position.styles] */
 
 .position-center {
@@ -309,6 +327,7 @@ body {
     margin: 0 auto;
     padding: 20px;
 }
+
 
 /* [helper.styles] */
 
@@ -333,6 +352,7 @@ body {
     display: none;
 }
 
+
 /* [animations.styles] */
 
 @keyframes footer-animate {
@@ -344,8 +364,13 @@ body {
     }
 }
 
+
 /* [animation resources] */
+
+
 /* [source::api](http://www.w3schools.com/cssref/css3_pr_animation.asp) */
+
+
 /* [source](http://stackoverflow.com/questions/33835096/css-to-pan-background-image-back-and-forth) */
 
 .footer-animate {
@@ -373,6 +398,7 @@ body {
     animation-iteration-count: 1;
 }
 
+
 /* [media_queries.styles] */
 
 @media screen and (max-width: 950px) {
@@ -386,6 +412,7 @@ body {
         font-size: 23px;
     }
 }
+
 
 /* [tablet - 768px] */
 
@@ -444,6 +471,7 @@ body {
     }
 }
 
+
 /* [mobile L - 425px] */
 
 @media screen and (max-width: 425px) {
@@ -452,6 +480,7 @@ body {
     }
 }
 
+
 /* [mobile M - 375px] */
 
 @media screen and (max-width: 375px) {
@@ -459,6 +488,7 @@ body {
         font-size: 25px;
     }
 }
+
 
 /* [mobile S - 320px] */
 
@@ -477,5 +507,6 @@ body {
         padding: 20px;
     }
 }
+
 
 /* [----- CSS.SITE.STYLES.END -----] */
