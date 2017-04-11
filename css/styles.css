@@ -377,9 +377,14 @@ body {
 }
 
 
-/*.header-wrapper, .footer-wrapper {
+/* prevents the flex child items from collapsing on themselves  */
+
+.header-wrapper,
+.footer-wrapper {
+    /* [https://philipwalton.com/articles/normalizing-cross-browser-flexbox-bugs/] */
+    /* [https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/] */
     flex-shrink: 0;
-}*/
+}
 
 
 /* [animations.styles] */
