@@ -272,14 +272,17 @@ body {
 .project-info-wrapper {
     position: relative;
     display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
     margin-top: -44px;
     padding: 10px;
     color: #fff;
     box-shadow: inset 10px -50px 17px -15px rgba(0, 0, 0, .6);
     -ms-flex-flow: row nowrap;
+    -webkit-flex-flow: row nowrap;
     flex-flow: row nowrap;
     -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
     justify-content: space-between;
 }
 
@@ -360,7 +363,6 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
     -webkit-touch-callout: none;
-    -khtml-user-select: none;
     user-select: none;
 }
 
@@ -383,6 +385,8 @@ body {
 .footer-wrapper {
     /* [https://philipwalton.com/articles/normalizing-cross-browser-flexbox-bugs/] */
     /* [https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/] */
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
     flex-shrink: 0;
 }
 
