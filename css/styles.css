@@ -1,34 +1,6 @@
-/* [----- CSS.RESET.START -----] */
-
-
-/* [box_sizing.styles](https://css-tricks.com/box-sizing/) */
-
-html {
-    box-sizing: border-box;
-}
-
-*,
-:before,
-:after {
-    box-sizing: inherit;
-}
-
 body {
-    font: 300 16px/1.5 Lato;
-    margin: 0;
-    color: #2d3c49;
+    font: 300 16px Lato;
 }
-
-:focus {
-    /* remove default outline [http://stackoverflow.com/questions/17324960/copy-chrome-default-inputs-outline-style] */
-    outline: none;
-}
-
-
-/* [----- CSS.RESET.END -----] */
-
-
-/* [----- CSS.SITE.STYLES.START -----] */
 
 .portfolio-wrapper {
     display: -ms-flexbox;
@@ -45,9 +17,7 @@ body {
     cursor: pointer;
 }
 
-
 /* [header.styles] */
-
 .header-wrapper {
     display: -ms-flexbox;
     display: -webkit-flex;
@@ -71,8 +41,7 @@ body {
     padding: 0 9px 0 7px;
     cursor: default;
     text-align: center;
-    color: #fff;
-    /* leaf  */
+    color: #fff;    /* leaf  */
     border-radius: 40px 100px 0 100px;
     background: #699935;
     -ms-flex-pack: center;
@@ -83,9 +52,7 @@ body {
     align-items: center;
 }
 
-
 /* [header.nav.styles] */
-
 .nav-wrapper {
     display: -ms-flexbox;
     display: -webkit-flex;
@@ -135,9 +102,7 @@ body {
     color: #cbcbcb;
 }
 
-
 /* [popup.styles] */
-
 .popup {
     position: absolute;
     z-index: 1;
@@ -173,18 +138,14 @@ body {
     margin: 30px 0 0 -100px;
 }
 
-
 /* [ul.styles] */
-
 .ul-reset {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-
 /* [main.styles] */
-
 .main-content-wrapper {
     display: -ms-flexbox;
     display: -webkit-flex;
@@ -214,9 +175,7 @@ body {
     justify-content: space-between;
 }
 
-
 /* [messages.styles] */
-
 .message-title {
     font-size: 35px;
     font-weight: 400;
@@ -229,8 +188,7 @@ body {
     padding: 0;
     word-wrap: break-word;
     -webkit-hyphens: auto;
-    hyphens: auto;
-    /* [hyphen,word-break](https://justmarkup.com/log/2015/07/dealing-with-long-words-in-css/) */
+    hyphens: auto;    /* [hyphen,word-break](https://justmarkup.com/log/2015/07/dealing-with-long-words-in-css/) */
     overflow-wrap: break-word;
     -ms-hyphens: auto;
 }
@@ -241,9 +199,7 @@ body {
     background: #f6f6f6;
 }
 
-
 /* [project.styles] */
-
 .project-item-wrapper {
     display: -ms-flexbox;
     display: -webkit-flex;
@@ -295,9 +251,7 @@ body {
     color: #fff;
 }
 
-
 /* [footer.styles] */
-
 .footer-wrapper {
     display: -ms-flexbox;
     display: -webkit-flex;
@@ -345,19 +299,16 @@ body {
     color: #08c;
 }
 
-
 /* [position.styles] */
-
 .position-center {
     width: 900px;
     margin: 0 auto;
     padding: 20px;
 }
 
-
 /* [helper.styles] */
-
 .unselectable {
+
     /* [source::credit](http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-highlighting) */
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -367,6 +318,7 @@ body {
 }
 
 .undraggable {
+
     /* [source::credit](http://stackoverflow.com/questions/7439042/css-js-to-prevent-dragging-of-ghost-image) */
     -webkit-user-drag: none;
     -khtml-user-drag: none;
@@ -378,45 +330,44 @@ body {
     display: none;
 }
 
-
 /* prevents the flex child items from collapsing on themselves  */
-
 .header-wrapper,
 .footer-wrapper {
+
     /* [https://philipwalton.com/articles/normalizing-cross-browser-flexbox-bugs/] */
+
     /* [https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/] */
     -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
     flex-shrink: 0;
 }
 
-
 /* [animations.styles] */
-
 @-webkit-keyframes footer-animate {
     0% {
         background: #ffe6b3;
     }
+
     50% {
         background: #f2f2f2;
     }
+
 }
 
 @keyframes footer-animate {
     0% {
         background: #ffe6b3;
     }
+
     50% {
         background: #f2f2f2;
     }
-}
 
+}
 
 /* [animation resources] */
 
-
 /* [source::api](http://www.w3schools.com/cssref/css3_pr_animation.asp) */
-
 
 /* [source](http://stackoverflow.com/questions/33835096/css-to-pan-background-image-back-and-forth) */
 
@@ -437,11 +388,13 @@ body {
         transform: translateY(-15px);
         opacity: 0;
     }
+
     100% {
         -webkit-transform: translateY(0);
         transform: translateY(0);
         opacity: 1;
     }
+
 }
 
 @keyframes animate-fadein {
@@ -450,11 +403,13 @@ body {
         transform: translateY(-15px);
         opacity: 0;
     }
+
     100% {
         -webkit-transform: translateY(0);
         transform: translateY(0);
         opacity: 1;
     }
+
 }
 
 .animate-fadein {
@@ -468,44 +423,48 @@ body {
     animation-iteration-count: 1;
 }
 
-
 /* [media_queries.styles] */
-
-@media screen and (max-width: 950px) {
+@media screen and (max-width:950px) {
     .position-center {
         width: calc(100% - 100px);
     }
+
     .message-title {
         font-size: 35px;
     }
+
     .message-text {
         font-size: 23px;
     }
+
 }
 
-
 /* [tablet - 768px] */
-
-@media screen and (max-width: 768px) {
+@media screen and (max-width:768px) {
     .position-center {
         width: 100%;
     }
+
     .header-wrapper {
         margin-top: 0;
     }
+
     .message-title {
         font-size: 28px;
     }
+
     .message-text {
         font-size: 20px;
     }
+
 }
 
-@media screen and (max-width: 680px) {
+@media screen and (max-width:680px) {
     .project-item-wrapper {
         width: 250px;
         margin-right: 0;
     }
+
     .projects-wrapper {
         -ms-flex-flow: row wrap;
         -webkit-flex-flow: row wrap;
@@ -514,71 +473,76 @@ body {
         -webkit-justify-content: space-around;
         justify-content: space-around;
     }
+
     .project-name {
         font-size: 14px;
     }
+
 }
 
-@media screen and (max-width: 625px) {
+@media screen and (max-width:625px) {
     .position-center {
         width: 100%;
     }
+
     .project-item-wrapper {
         width: 200px;
     }
+
     .responsive-text-hideable {
         display: none;
     }
+
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width:500px) {
     .project-item-wrapper {
         width: 270px;
     }
+
     .nav-expanded-wrapper {
         display: none;
     }
+
     .nav-compact-wrapper {
         display: block;
     }
+
 }
 
-
 /* [mobile L - 425px] */
-
-@media screen and (max-width: 425px) {
+@media screen and (max-width:425px) {
     .message-title {
         font-size: 27px;
     }
+
 }
 
-
 /* [mobile M - 375px] */
-
-@media screen and (max-width: 375px) {
+@media screen and (max-width:375px) {
     .message-title {
         font-size: 25px;
     }
+
 }
 
-
 /* [mobile S - 320px] */
-
-@media screen and (max-width: 320px) {
+@media screen and (max-width:320px) {
     .position-center {
         width: 300px;
     }
+
     .message-title {
         font-size: 23px;
     }
+
     .message-text {
         font-size: 18px;
         padding: 0;
     }
+
     .message-text-workcallout {
         padding: 20px;
     }
+
 }
-
-
-/* [----- CSS.SITE.STYLES.END -----] */
