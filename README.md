@@ -1,10 +1,10 @@
-# responsive-portfolio-template
+# portfolio
 
-An online template for a responsive portfolio.
+My online portfolio.
 
 ### Live Demo
 
-See it live [here](https://cgabriel5.github.io/portfolio/).
+See it [here](https://cgabriel5.github.io/portfolio/).
 
 ### Contributing
 
@@ -13,3 +13,4 @@ This is a personal repo and therefore not accepting any contributions.
 ### License
 
 This project has no License.
+

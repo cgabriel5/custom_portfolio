@@ -1,0 +1,468 @@
+body {
+    font: 300 16px Lato;
+}
+
+.portfolio-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+}
+
+.ios-click-fix {
+    cursor: pointer;
+}
+
+/* [header.styles] */
+.header-wrapper {
+    display: flex;
+    width: 100%;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.header-logo-wrapper {
+    font-size: 16px;
+    display: flex;
+    width: 34px;
+    height: 34px;
+    padding: 0 9px 0 7px;
+    cursor: default;
+    text-align: center;
+    color: #fff;    /* leaf  */
+    border-radius: 40px 100px 0 100px;
+    background: #699935;
+    justify-content: center;
+    align-items: center;
+}
+
+/* [header.nav.styles] */
+.nav-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.nav-item {
+    font-weight: 400;
+    margin-right: 3px;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.nav-item:hover {
+    color: #5f636a;
+    background: #eee;
+}
+
+.nav-item:active {
+    color: #cbcbcb;
+}
+
+.nav-current {
+    background: #eee;
+}
+
+.nav-expanded-wrapper {
+    display: inherit;
+}
+
+.nav-compact-wrapper {
+    font-size: 24px;
+    line-height: 0;
+    display: none;
+    width: 22px;
+    height: 25px;
+    margin: 5px 3px 0 0;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.nav-compact-wrapper:active {
+    color: #cbcbcb;
+}
+
+/* [popup.styles] */
+.popup {
+    position: absolute;
+    z-index: 1;
+    min-width: 200px;
+    padding: 4px 0;
+    cursor: default;
+    text-align: left;
+    color: #fff;
+    border: 1px solid rgba(0, 0, 0, .06);
+    border-bottom: 1px solid transparent;
+    border-radius: 4px;
+    background: #333;
+    background-clip: padding-box;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, .15);
+}
+
+.popup-item {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px 20px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.popup-item:hover {
+    color: #fff;
+    background: #69a335;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .1);
+}
+
+.popup-menu-wrapper {
+    min-width: 100px;
+    margin: 30px 0 0 -78px;
+}
+
+/* [ul.styles] */
+.ul-reset {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* [main.styles] */
+.main-content-wrapper {
+    display: flex;
+    margin: 50px 0;
+    padding-top: 50px !important;
+    padding-bottom: 50px !important;
+    flex: 1 0 auto;
+    flex-flow: column nowrap;
+}
+
+.projects-wrapper {
+    display: flex;
+    width: 100%;
+    padding-top: 10px;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+/* [messages.styles] */
+.message-title {
+    font-size: 35px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.message-text {
+    font-size: 25px;
+    margin: 0 0 20px;
+    padding: 0;
+    word-wrap: break-word;
+    hyphens: auto;    /* [hyphen,word-break](https://justmarkup.com/log/2015/07/dealing-with-long-words-in-css/) */
+    overflow-wrap: break-word;
+}
+
+.message-text-workcallout {
+    padding: 20px;
+    border-radius: 5px;
+    background: #f6f6f6;
+}
+
+/* [project.styles] */
+.project-item-wrapper {
+    display: flex;
+    width: 100%;
+    margin: 0 20px 30px 0;
+    flex-flow: column nowrap;
+}
+
+.project-item-wrapper:last-of-type {
+    margin-right: 0;
+}
+
+.project-item-innerwrapper {
+    overflow: hidden;
+    border-radius: 7px;
+}
+
+.project-img {
+    display: block;
+    width: 100%;
+}
+
+.project-info-wrapper {
+    position: relative;
+    display: flex;
+    margin-top: -44px;
+    padding: 10px;
+    color: #fff;
+    box-shadow: inset 10px -50px 17px -15px rgba(0, 0, 0, .6);
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.project-name {
+    font-weight: 700;
+    cursor: default;
+}
+
+.project-link-external {
+    color: #fff;
+}
+
+/* [footer.styles] */
+.footer-wrapper {
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    background: #f2f2f2;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+
+.contact-wrapper {
+    display: flex;
+    margin-left: 15px;
+}
+
+.contact-logo-img {
+    width: 30px;
+    height: 30px;
+    margin: 5px 5px 0 0;
+}
+
+.contact-text {
+    font-weight: 400;
+    margin-top: 8px;
+}
+
+.contact-link {
+    display: inline-flex;
+    cursor: pointer;
+    text-decoration: none;
+    color: #2d3c49;
+}
+
+.contact-link:hover {
+    text-decoration: underline;
+    color: #08c;
+}
+
+/* [position.styles] */
+.position-center {
+    width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* [helper.styles] */
+.unselectable {
+
+    /* [source::credit](http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-highlighting) */
+    user-select: none;
+}
+
+.undraggable {
+
+    /* [source::credit](http://stackoverflow.com/questions/7439042/css-js-to-prevent-dragging-of-ghost-image) */
+}
+
+.hidden {
+    display: none;
+}
+
+/* prevents the flex child items from collapsing on themselves  */
+.header-wrapper,
+.footer-wrapper {
+
+    /* [https://philipwalton.com/articles/normalizing-cross-browser-flexbox-bugs/] */
+
+    /* [https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/] */
+    flex-shrink: 0;
+}
+
+/* [animations.styles] */
+@-webkit-keyframes footer-animate {
+    0% {
+        background: #ffe6b3;
+    }
+
+    50% {
+        background: #f2f2f2;
+    }
+
+}
+
+@keyframes footer-animate {
+    0% {
+        background: #ffe6b3;
+    }
+
+    50% {
+        background: #f2f2f2;
+    }
+
+}
+
+/* [animation resources] */
+
+/* [source::api](http://www.w3schools.com/cssref/css3_pr_animation.asp) */
+
+/* [source](http://stackoverflow.com/questions/33835096/css-to-pan-background-image-back-and-forth) */
+
+.footer-animate {
+    animation-name: footer-animate;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+}
+
+@-webkit-keyframes animate-fadein {
+    0% {
+        transform: translateY(-15px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+}
+
+@keyframes animate-fadein {
+    0% {
+        transform: translateY(-15px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+}
+
+.animate-fadein {
+    animation-name: animate-fadein;
+    animation-duration: .3s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+}
+
+/* [media_queries.styles] */
+@media screen and (max-width:950px) {
+    .position-center {
+        width: calc(100% - 100px);
+    }
+
+    .message-title {
+        font-size: 35px;
+    }
+
+    .message-text {
+        font-size: 23px;
+    }
+
+}
+
+/* [tablet - 768px] */
+@media screen and (max-width:768px) {
+    .position-center {
+        width: 100%;
+    }
+
+    .header-wrapper {
+        margin-top: 0;
+    }
+
+    .message-title {
+        font-size: 28px;
+    }
+
+    .message-text {
+        font-size: 20px;
+    }
+
+}
+
+@media screen and (max-width:680px) {
+    .project-item-wrapper {
+        width: 250px;
+        margin-right: 0;
+    }
+
+    .projects-wrapper {
+        flex-flow: row wrap;
+        justify-content: space-around;
+    }
+
+    .project-name {
+        font-size: 14px;
+    }
+
+}
+
+@media screen and (max-width:625px) {
+    .position-center {
+        width: 100%;
+    }
+
+    .project-item-wrapper {
+        width: 200px;
+    }
+
+    .responsive-text-hideable {
+        display: none;
+    }
+
+}
+
+@media screen and (max-width:500px) {
+    .project-item-wrapper {
+        width: 270px;
+    }
+
+    .nav-expanded-wrapper {
+        display: none;
+    }
+
+    .nav-compact-wrapper {
+        display: block;
+    }
+
+}
+
+/* [mobile L - 425px] */
+@media screen and (max-width:425px) {
+    .message-title {
+        font-size: 27px;
+    }
+
+}
+
+/* [mobile M - 375px] */
+@media screen and (max-width:375px) {
+    .message-title {
+        font-size: 25px;
+    }
+
+}
+
+/* [mobile S - 320px] */
+@media screen and (max-width:320px) {
+    .position-center {
+        width: 300px;
+    }
+
+    .message-title {
+        font-size: 23px;
+    }
+
+    .message-text {
+        font-size: 18px;
+        padding: 0;
+    }
+
+    .message-text-workcallout {
+        padding: 20px;
+    }
+
+}
