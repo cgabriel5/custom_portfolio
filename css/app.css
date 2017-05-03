@@ -645,7 +645,7 @@ body {
 
 .nav-item {
     font-weight: 400;
-    margin-right: 3px;
+    margin-left: 3px;
     padding: 6px 12px;
     cursor: pointer;
     border-radius: 4px;
@@ -658,6 +658,10 @@ body {
 
 .nav-item:active {
     color: #cbcbcb;
+}
+
+.menu-link-lmargin {
+    margin-left: 5px;
 }
 
 .nav-current {
@@ -673,7 +677,8 @@ body {
     display: none;
     cursor: pointer;
     border-radius: 4px;
-    padding: 0px 10px 3px 10px;
+    padding: 0px 8px;
+    margin-right: -8px;
 }
 
 .nav-compact-wrapper:active {
@@ -694,7 +699,7 @@ body {
     border-radius: 4px;
     background: #333;
     background-clip: padding-box;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, .15);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, .15);
 }
 
 .popup-item {
@@ -713,7 +718,7 @@ body {
 
 .popup-menu-wrapper {
     min-width: 100px;
-    margin: 35px 0px 0 -109px;
+    margin: 35px 0px 0 -99px;
 }
 
 /* [ul.styles] */
@@ -906,6 +911,11 @@ body {
     padding: 20px;
 }
 
+.a-unstyle {
+    color: inherit;
+    text-decoration: inherit;
+}
+
 /* [helper.styles] */
 .unselectable {
 
@@ -916,10 +926,11 @@ body {
     user-select: none;
 }
 
-.undraggable {
+/*.undraggable {*/
 
-    /* [source::credit](http://stackoverflow.com/questions/7439042/css-js-to-prevent-dragging-of-ghost-image) */
-}
+/* [source::credit](http://stackoverflow.com/questions/7439042/css-js-to-prevent-dragging-of-ghost-image) */
+
+/*}*/
 
 .hidden {
     display: none;

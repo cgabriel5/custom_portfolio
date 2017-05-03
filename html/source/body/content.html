@@ -10,8 +10,7 @@
                 <div class="nav-item unselectable" data-delegation="nav_works,nav_tab_reset;stop" id="nav-works">
                     works
                 </div>
-                <!-- TODO: link/embed resume -->
-                <!-- <div class="nav-item unselectable" data-delegation="nav_resume;stop" id="nav-resume">resume</div> -->
+                <div class="nav-item unselectable" id="nav-resume"><a href="https://cgabriel5.github.io/resume/" target="_blank" class="a-unstyle">resume <span class="menu-link-lmargin"><i aria-hidden="true" class="fa fa-external-link-square"></i></a></div>
                 <div class="nav-item unselectable hidden" data-delegation="nav_contact;stop" id="nav-contact">
                     contact
                 </div>
@@ -19,14 +18,14 @@
             <div class="nav-compact-wrapper unselectable" data-delegation="hamburger_menu,cache_popup;stop" id="nav-hamburger-menu">
                 <i aria-hidden="true" class="fa fa-bars"></i>
             </div>
+            <!-- [https://developers.google.com/web/updates/2016/06/absolute-positioned-children] -->
             <!-- [https://googlechrome.github.io/samples/css-flexbox-abspos/] -->
-            <div class="safari-absolute-child-fix-wrapper">
+            <div class="absolute-child-fix-wrapper">
                 <div class="popup popup-menu-wrapper hidden unselectable" data-delegation="hamburger_menu;stop" id="popup-menu-wrapper">
                     <ul class="ul-reset">
                         <li class="popup-item" data-delegation="nav_popup_home;" data-syncid="nav-home" id="nav-popup-home">home</li>
                         <li class="popup-item" data-delegation="nav_popup_works;" data-syncid="nav-works" id="nav-popup-works">works</li>
-                        <!-- TODO: link/embed resume -->
-                        <!-- <li class="popup-item" data-delegation="nav_popup_resume;" data-syncid="nav-resume" id="nav-popup-resume">resume</li> -->
+                        <li class="popup-item" data-syncid="nav-resume" id="nav-popup-resume"><a href="https://cgabriel5.github.io/resume/" target="_blank" class="a-unstyle">resume <span class="menu-link-lmargin"><i aria-hidden="true" class="fa fa-external-link-square"></i></a></li>
                         <li class="popup-item hidden" data-delegation="nav_popup_contact;" data-syncid="nav-contact" id="nav-popup-contact">contact</li>
                     </ul>
                 </div>
