@@ -166,6 +166,7 @@ app.module("events", function(modules, name) {
     // show the contact tab when the BODY's vertical scrollbar is displayed
     window.addEventListener("resize", function(e) {
         show_contact_nav();
+        hide_last_open_popup();
     });
 
     // hide the popup menu when the orientation changes

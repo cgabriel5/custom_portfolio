@@ -59,8 +59,12 @@ body {
     color: #cbcbcb;
 }
 
-.menu-link-lmargin {
-    margin-left: 5px;
+.menu-link-rmargin {
+    margin-right: 5px;
+}
+
+.text-vertical-center {
+    vertical-align: middle;
 }
 
 .nav-current {
@@ -117,7 +121,7 @@ body {
 
 .popup-menu-wrapper {
     min-width: 100px;
-    margin: 35px 0px 0 -99px;
+    margin: 35px 0px 0 -107px;
 }
 
 /* [ul.styles] */
@@ -153,12 +157,13 @@ body {
 }
 
 .message-text {
-    font-size: 25px;
+    font-size: 23px;
     margin: 0 0 20px;
     padding: 0;
     word-wrap: break-word;
     hyphens: auto;    /* [hyphen,word-break](https://justmarkup.com/log/2015/07/dealing-with-long-words-in-css/) */
     overflow-wrap: break-word;
+    font-family: Libre Franklin;
 }
 
 .message-text-workcallout {
@@ -201,7 +206,7 @@ body {
 }
 
 .project-name {
-    font-weight: 700;
+    font-weight: bold;
     cursor: default;
 }
 
@@ -366,7 +371,7 @@ body {
     }
 
     .message-text {
-        font-size: 23px;
+        font-size: 22px;
     }
 
 }

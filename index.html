@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/libs.css" rel="stylesheet">
     <link href="css/app.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Libre+Franklin:300,400" rel="stylesheet">
     <!-- [emoticons](https://github.com/Ranks/emojione) -->
     <link href="https://cdn.jsdelivr.net/emojione/2.2.4/assets/css/emojione.min.css" rel="stylesheet">
 </head>
@@ -22,12 +22,26 @@
             <nav class="nav-wrapper">
                 <div class="nav-expanded-wrapper">
                     <div class="nav-item nav-current unselectable" data-delegation="nav_home,nav_tab_reset;stop" id="nav-home">
-                        home
+                        <span class="text-vertical-center">
+                        <span class="menu-link-rmargin">
+                            <i aria-hidden="true" class="fa fa-home"></i>
+                        </span> home
+                        </span>
                     </div>
                     <div class="nav-item unselectable" data-delegation="nav_works,nav_tab_reset;stop" id="nav-works">
-                        works
+                        <span class="text-vertical-center">
+                        <span class="menu-link-rmargin">
+                            <i aria-hidden="true" class="fa fa-file-code-o"></i>
+                        </span> works
+                        </span>
                     </div>
-                    <div class="nav-item unselectable" id="nav-resume"><a href="https://cgabriel5.github.io/resume/" target="_blank" class="a-unstyle">resume <span class="menu-link-lmargin"><i aria-hidden="true" class="fa fa-external-link-square"></i></a></div>
+                    <div class="nav-item unselectable" id="nav-resume">
+                        <a href="https://cgabriel5.github.io/resume/" target="_blank" class="a-unstyle">
+                            <span class="menu-link-rmargin">
+                            <i aria-hidden="true" class="fa fa-external-link-square"></i>
+                        </span> resume
+                        </a>
+                    </div>
                     <div class="nav-item unselectable hidden" data-delegation="nav_contact;stop" id="nav-contact">
                         contact
                     </div>
@@ -40,10 +54,31 @@
                 <div class="absolute-child-fix-wrapper">
                     <div class="popup popup-menu-wrapper hidden unselectable" data-delegation="hamburger_menu;stop" id="popup-menu-wrapper">
                         <ul class="ul-reset">
-                            <li class="popup-item" data-delegation="nav_popup_home;" data-syncid="nav-home" id="nav-popup-home">home</li>
-                            <li class="popup-item" data-delegation="nav_popup_works;" data-syncid="nav-works" id="nav-popup-works">works</li>
-                            <li class="popup-item" data-syncid="nav-resume" id="nav-popup-resume"><a href="https://cgabriel5.github.io/resume/" target="_blank" class="a-unstyle">resume <span class="menu-link-lmargin"><i aria-hidden="true" class="fa fa-external-link-square"></i></a></li>
-                            <li class="popup-item hidden" data-delegation="nav_popup_contact;" data-syncid="nav-contact" id="nav-popup-contact">contact</li>
+                            <li class="popup-item" data-delegation="nav_popup_home;" data-syncid="nav-home" id="nav-popup-home"><span class="text-vertical-center">
+                        <span class="menu-link-rmargin">
+                            <i aria-hidden="true" class="fa fa-home"></i>
+                        </span> home
+                                </span>
+                            </li>
+                            <li class="popup-item" data-delegation="nav_popup_works;" data-syncid="nav-works" id="nav-popup-works"><span class="text-vertical-center">
+                        <span class="menu-link-rmargin">
+                            <i aria-hidden="true" class="fa fa-file-code-o"></i>
+                        </span> works
+                                </span>
+                            </li>
+                            <li class="popup-item" data-syncid="nav-resume" id="nav-popup-resume">
+                                <a href="https://cgabriel5.github.io/resume/" target="_blank" class="a-unstyle">
+                                    <span class="menu-link-rmargin">
+                            <i aria-hidden="true" class="fa fa-external-link-square"></i>
+                        </span> resume
+                                </a>
+                            </li>
+                            <li class="popup-item hidden" data-delegation="nav_popup_contact;" data-syncid="nav-contact" id="nav-popup-contact"><span class="text-vertical-center">
+                        <span class="menu-link-rmargin">
+                            <i aria-hidden="true" class="fa fa-envelope"></i>
+                        </span> contact
+                                </span>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -53,10 +88,11 @@
         <main class="main-content-wrapper position-center">
             <div class="section-aboutme-wrapper hidden animate-fadein" id="section-aboutme-wrapper">
                 <div class="message-title">
-                    Well, Hello There!
+                    Well, hello there!
                 </div>
-                <p class="message-text">My name is John Doe. I'm an aspiring front-end web developer who <span class="emoticon-shortname">:heart_decoration:</span>s the Web and UI. I like to keep things simple while still elegant and clean.</p>
-                <p class="message-text">Currently, I'm unemployed (<span class="emoticon-shortname">:sob:</span>) and available for hire (<span class="emoticon-shortname">:smiley:</span>). I'm open for contracted, full-time, or part-time work. Check out my work to see what I can do!</p>
+                <p class="message-text">First things first, my name is Carlos. I'm an aspiring front-end web developer who <span class="emoticon-shortname">:heart_decoration:</span>'s the Web and UI. I like to keep things simple while still elegant and clean.</p>
+                <p class="message-text">Although graduating from college with a biology degree, I had a change of heart and decided to become a web developer. Yes, I love the web that much! <span class="emoticon-shortname">:grin:</span> Having an eye for detail, I naturally found Front-End web development quite fitting. What can I say, I like it when a website looks good. <span class="emoticon-shortname">:smirk:</span></p>
+                <p class="message-text">I'm currently open for contracted, full-time, or part-time work. Check out my work to see what I can do! <span class="emoticon-shortname">:smiley:</span></p>
             </div>
             <div class="section-works-wrapper hidden animate-fadein" id="section-works-wrapper">
                 <div class="message-title">
@@ -123,12 +159,12 @@
                 </a>
             </div>
             <div class="contact-wrapper">
-                <a class="contact-link" href="mailto:johndoe@example.com" rel="nofollow">
+                <a class="contact-link" href="mailto:carlosgabriel71@yahoo.com" rel="nofollow">
                     <div class="contact-logo-wrapper">
                         <picture><img alt="email icon" class="contact-logo-img undraggable" draggable="false" src="img/icons/email.svg"></picture>
                     </div>
                     <div class="contact-text responsive-text-hideable">
-                        johndoe@example.com
+                        carlosgabriel71@yahoo.com
                     </div>
                 </a>
             </div>
