@@ -85,6 +85,15 @@ app.module("core", function(modules, name) {
     }
 
     /**
+     * @description [Open a new tab linking to the resume page.]
+     * @return {Undefined}  [Nothing is returned.]
+     */
+    function show_resume() {
+        // open a new tab to the resume page
+        window.open("https://cgabriel5.github.io/resume/");
+    }
+
+    /**
      * @description [Parse provided delegation data.]
      * @param {EventTargetElement} target [Browser provided clicked target element.]
      * @return {Object}  [Returns an object containing its actions and or bubbling.]
@@ -96,15 +105,18 @@ app.module("core", function(modules, name) {
         if (!delegation_data) {
             return {
                 actions: [],
-                stop: false
+                stop: false,
+                preventDefault: false
             };
         }
         var parts = delegation_data.trim().split(";");
         var actions = parts[0].trim().split(",");
-        var bubble = parts[1].trim();
+        // remove the actions
+        parts.shift();
         return {
             actions: actions,
-            stop: bubble ? true : false
+            stop: Boolean(-~parts.indexOf("stop")),
+            preventDefault: Boolean(-~parts.indexOf("pd"))
         };
     }
 
@@ -127,6 +139,7 @@ app.module("core", function(modules, name) {
     this[name].hide_last_open_popup = hide_last_open_popup;
     this[name].show_aboutme_section = show_aboutme_section;
     this[name].show_works_section = show_works_section;
+    this[name].show_resume = show_resume;
     this[name].parse_delegation_data = parse_delegation_data;
     this[name].highlight_tab = highlight_tab;
 });

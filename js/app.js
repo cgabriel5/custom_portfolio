@@ -175,7 +175,7 @@
          * @source [http://stackoverflow.com/questions/2146874/detect-if-a-page-has-a-vertical-scrollbar]
          */
         function is_vertical_scrollbar_visible() {
-            return document.body.clientHeight > window.innerHeight;
+            return document.body.scrollHeight > window.innerHeight;
         }
 
         // export to access in other modules
@@ -302,6 +302,15 @@
         }
 
         /**
+         * @description [Open a new tab linking to the resume page.]
+         * @return {Undefined}  [Nothing is returned.]
+         */
+        function show_resume() {
+            // open a new tab to the resume page
+            window.open("https://cgabriel5.github.io/resume/");
+        }
+
+        /**
          * @description [Parse provided delegation data.]
          * @param {EventTargetElement} target [Browser provided clicked target element.]
          * @return {Object}  [Returns an object containing its actions and or bubbling.]
@@ -313,15 +322,18 @@
             if (!delegation_data) {
                 return {
                     actions: [],
-                    stop: false
+                    stop: false,
+                    preventDefault: false
                 };
             }
             var parts = delegation_data.trim().split(";");
             var actions = parts[0].trim().split(",");
-            var bubble = parts[1].trim();
+            // remove the actions
+            parts.shift();
             return {
                 actions: actions,
-                stop: bubble ? true : false
+                stop: Boolean(-~parts.indexOf("stop")),
+                preventDefault: Boolean(-~parts.indexOf("pd"))
             };
         }
 
@@ -344,6 +356,7 @@
         this[name].hide_last_open_popup = hide_last_open_popup;
         this[name].show_aboutme_section = show_aboutme_section;
         this[name].show_works_section = show_works_section;
+        this[name].show_resume = show_resume;
         this[name].parse_delegation_data = parse_delegation_data;
         this[name].highlight_tab = highlight_tab;
     });
@@ -367,6 +380,7 @@
             reset_navigation = core.reset_navigation,
             show_aboutme_section = core.show_aboutme_section,
             show_works_section = core.show_works_section,
+            show_resume = core.show_resume,
             highlight_tab = core.highlight_tab;
 
         // local module vars
@@ -399,6 +413,14 @@
              */
             nav_works: function(target) {
                 show_works_section();
+            },
+            /**
+             * @description [Shows the works section.]
+             * @param  {EventTargetElement} target [Browser provided clicked target element.]
+             * @return {Undefined}  [Nothing is returned.]
+             */
+            nav_resume: function(target) {
+                show_resume();
             },
             /**
              * @description [Scrolls down to the footer and highlights it.]
@@ -503,28 +525,30 @@
                     // if the action call exists invoke it
                     if (action) action.call(original_target, target);
                 }
+                // check whether to prevent browser's default action
+                if (delegation_data.preventDefault) e.preventDefault();
                 // check wether we need to stop bubbling
                 if (delegation_data.stop) return;
             }
         });
 
-        // when window loses focus hide any open popups
-        window.addEventListener("blur", function(e) {
-            // hide the last open popup
-            hide_last_open_popup();
-        });
+        // // when window loses focus hide any open popups
+        // window.addEventListener("blur", function(e) {
+        //     // hide the last open popup
+        //     hide_last_open_popup();
+        // });
 
         // show the contact tab when the BODY's vertical scrollbar is displayed
         window.addEventListener("resize", function(e) {
             show_contact_nav();
-            hide_last_open_popup();
+            // hide_last_open_popup();
         });
 
-        // hide the popup menu when the orientation changes
-        window.addEventListener("orientationchange", function(e) {
-            // hide the last open popup
-            hide_last_open_popup();
-        });
+        // // hide the popup menu when the orientation changes
+        // window.addEventListener("orientationchange", function(e) {
+        //     // hide the last open popup
+        //     hide_last_open_popup();
+        // });
 
         // listen to when the footer transition ends to remove the animation class
         document.addEventListener(which_animation_event(), function() {

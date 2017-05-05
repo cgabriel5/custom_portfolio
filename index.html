@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/libs.css" rel="stylesheet">
     <link href="css/app.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Libre+Franklin:300,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
     <!-- [emoticons](https://github.com/Ranks/emojione) -->
     <link href="https://cdn.jsdelivr.net/emojione/2.2.4/assets/css/emojione.min.css" rel="stylesheet">
 </head>
@@ -20,6 +20,7 @@
         <header class="header-wrapper position-center">
             <div class="header-logo-wrapper unselectable"></div>
             <nav class="nav-wrapper">
+                <!-- extended menu -->
                 <div class="nav-expanded-wrapper">
                     <div class="nav-item nav-current unselectable" data-delegation="nav_home,nav_tab_reset;stop" id="nav-home">
                         <span class="text-vertical-center">
@@ -35,51 +36,65 @@
                         </span> works
                         </span>
                     </div>
-                    <div class="nav-item unselectable" id="nav-resume">
-                        <a href="https://cgabriel5.github.io/resume/" target="_blank" class="a-unstyle">
+                    <div class="nav-item unselectable" data-delegation="nav_resume;stop;pd" id="nav-resume">
+                        <a href="https://cgabriel5.github.io/resume/" target="_blank" class="a-unstyle text-vertical-center">
                             <span class="menu-link-rmargin">
                             <i aria-hidden="true" class="fa fa-external-link-square"></i>
                         </span> resume
                         </a>
                     </div>
                     <div class="nav-item unselectable hidden" data-delegation="nav_contact;stop" id="nav-contact">
-                        contact
-                    </div>
-                </div>
-                <div class="nav-compact-wrapper unselectable" data-delegation="hamburger_menu,cache_popup;stop" id="nav-hamburger-menu">
-                    <i aria-hidden="true" class="fa fa-bars"></i>
-                </div>
-                <!-- [https://developers.google.com/web/updates/2016/06/absolute-positioned-children] -->
-                <!-- [https://googlechrome.github.io/samples/css-flexbox-abspos/] -->
-                <div class="absolute-child-fix-wrapper">
-                    <div class="popup popup-menu-wrapper hidden unselectable" data-delegation="hamburger_menu;stop" id="popup-menu-wrapper">
-                        <ul class="ul-reset">
-                            <li class="popup-item" data-delegation="nav_popup_home;" data-syncid="nav-home" id="nav-popup-home"><span class="text-vertical-center">
-                        <span class="menu-link-rmargin">
-                            <i aria-hidden="true" class="fa fa-home"></i>
-                        </span> home
-                                </span>
-                            </li>
-                            <li class="popup-item" data-delegation="nav_popup_works;" data-syncid="nav-works" id="nav-popup-works"><span class="text-vertical-center">
-                        <span class="menu-link-rmargin">
-                            <i aria-hidden="true" class="fa fa-file-code-o"></i>
-                        </span> works
-                                </span>
-                            </li>
-                            <li class="popup-item" data-syncid="nav-resume" id="nav-popup-resume">
-                                <a href="https://cgabriel5.github.io/resume/" target="_blank" class="a-unstyle">
-                                    <span class="menu-link-rmargin">
-                            <i aria-hidden="true" class="fa fa-external-link-square"></i>
-                        </span> resume
-                                </a>
-                            </li>
-                            <li class="popup-item hidden" data-delegation="nav_popup_contact;" data-syncid="nav-contact" id="nav-popup-contact"><span class="text-vertical-center">
+                        <span class="text-vertical-center">
                         <span class="menu-link-rmargin">
                             <i aria-hidden="true" class="fa fa-envelope"></i>
                         </span> contact
+                        </span>
+                    </div>
+                </div>
+                <!-- hamburger menu -->
+                <div>
+                    <!-- hamburger menu items -->
+                    <!-- [https://developers.google.com/web/updates/2016/06/absolute-positioned-children] -->
+                    <!-- [https://googlechrome.github.io/samples/css-flexbox-abspos/] -->
+                    <div class="absolute-child-fix-wrapper hide500plus">
+                        <div class="popup popup-menu-wrapper hidden unselectable" data-delegation="hamburger_menu;stop" id="popup-menu-wrapper">
+                            <ul class="ul-reset">
+                                <li class="popup-item text-vertical-center flex" data-delegation="nav_popup_home;" data-syncid="nav-home" id="nav-popup-home">
+                                    <!-- <span class="text-vertical-center"> -->
+                                    <span class="menu-link-rmargin">
+                                    <i aria-hidden="true" class="fa fa-home"></i>
                                 </span>
-                            </li>
-                        </ul>
+                                    <span>home</span>
+                                    <!-- </span> -->
+                                </li>
+                                <li class="popup-item text-vertical-center flex" data-delegation="nav_popup_works;" data-syncid="nav-works" id="nav-popup-works">
+                                    <!-- <span class="text-vertical-center"> -->
+                                    <span class="menu-link-rmargin">
+                            <i aria-hidden="true" class="fa fa-file-code-o"></i>
+                        </span>
+                                    <span>works</span>
+                                    <!-- </span> -->
+                                </li>
+                                <li class="popup-item text-vertical-center flex" data-delegation="nav_resume;stop;pd" data-syncid="nav-resume" id="nav-popup-resume">
+                                    <a href="https://cgabriel5.github.io/resume/" target="_blank" class="a-unstyle text-vertical-center flex">
+                                        <span class="menu-link-rmargin">
+                            <i aria-hidden="true" class="fa fa-external-link-square"></i>
+                        </span> <span>resume</span>
+                                    </a>
+                                </li>
+                                <li class="popup-item text-vertical-center flex hidden" data-delegation="nav_popup_contact;" data-syncid="nav-contact" id="nav-popup-contact">
+                                    <!-- <span class="text-vertical-center"> -->
+                                    <span class="menu-link-rmargin">
+                            <i aria-hidden="true" class="fa fa-envelope"></i>
+                        </span>
+                                    <span>contact</span>
+                                    <!-- </span> -->
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="nav-compact-wrapper unselectable" data-delegation="hamburger_menu,cache_popup;stop" id="nav-hamburger-menu">
+                        <i aria-hidden="true" class="fa fa-bars"></i>
                     </div>
                 </div>
             </nav>
@@ -105,30 +120,30 @@
                     <div class="project-item-wrapper">
                         <div class="project-item-innerwrapper">
                             <div class="project-img-wrapper">
-                                <picture><img alt="appify app" class="project-img undraggable" draggable="false" src="img/projects/appify.jpg"></picture>
+                                <picture><img alt="appify app" class="project-img undraggable" draggable="false" src="img/projects/interactionsjs.jpg"></picture>
                             </div>
                             <div class="project-info-wrapper">
-                                <span class="project-name unselectable">Appify</span><a href="https://github.com/udacity/Appify/" class="project-link" target="_blank"><span class="project-link-external"><i aria-hidden="true" class="fa fa-external-link-square"></i></span></a>
+                                <span class="project-name unselectable">InteractionJS (events)</span><a href="https://github.com/cgabriel5/interactionjs" class="project-link" target="_blank"><span class="project-link-external"><i aria-hidden="true" class="fa fa-external-link-square"></i></span></a>
                             </div>
                         </div>
                     </div>
                     <div class="project-item-wrapper">
                         <div class="project-item-innerwrapper">
                             <div class="project-img-wrapper">
-                                <picture><img alt="sunflower app" class="project-img undraggable" draggable="false" src="img/projects/sunflower.jpg"></picture>
+                                <picture><img alt="sunflower app" class="project-img undraggable" draggable="false" src="img/projects/httpjs.jpg"></picture>
                             </div>
                             <div class="project-info-wrapper">
-                                <span class="project-name unselectable">Sunflower</span><a href="https://github.com/udacity/Sunflower/" class="project-link" target="_blank"><span class="project-link-external"><i aria-hidden="true" class="fa fa-external-link-square"></i></span></a>
+                                <span class="project-name unselectable">XHR-Wrapper (httpjs)</span><a href="https://github.com/cgabriel5/httpjs" class="project-link" target="_blank"><span class="project-link-external"><i aria-hidden="true" class="fa fa-external-link-square"></i></span></a>
                             </div>
                         </div>
                     </div>
                     <div class="project-item-wrapper">
                         <div class="project-item-innerwrapper">
                             <div class="project-img-wrapper">
-                                <picture><img alt="bokeh app" class="project-img undraggable" draggable="false" src="img/projects/bokeh.jpg"></picture>
+                                <picture><img alt="bokeh app" class="project-img undraggable" draggable="false" src="img/projects/monitorjs.jpg"></picture>
                             </div>
                             <div class="project-info-wrapper">
-                                <span class="project-name unselectable">Bokeh</span><a href="https://github.com/udacity/Bokeh/" class="project-link" target="_blank"><span class="project-link-external"><i aria-hidden="true" class="fa fa-external-link-square"></i></span></a>
+                                <span class="project-name unselectable">MonitorJS</span><a href="https://github.com/cgabriel5/monitorjs" class="project-link" target="_blank"><span class="project-link-external"><i aria-hidden="true" class="fa fa-external-link-square"></i></span></a>
                             </div>
                         </div>
                     </div>
@@ -141,30 +156,30 @@
             <!-- [creator](https://www.iconfinder.com/alfredoh) -->
             <!-- [license](https://creativecommons.org/licenses/by/3.0/) -->
             <div class="contact-wrapper">
-                <div class="contact-logo-wrapper">
-                    <picture><img alt="location icon" class="contact-logo-img undraggable" draggable="false" src="img/icons/location.svg"></picture>
-                </div>
-                <div class="contact-text">
-                    Modesto, CA
+                <!-- <div class="contact-logo-wrapper">
+                <picture><img alt="location icon" class="contact-logo-img undraggable" draggable="false" src="img/icons/location.svg"></picture>
+            </div> -->
+                <div class="contact-text text-vertical-center">
+                    <span class="footer-icon"><i aria-hidden="true" class="fa fa-map-marker"></i></span> Modesto, CA
                 </div>
             </div>
             <div class="contact-wrapper">
                 <a class="contact-link" href="https://github.com/cgabriel5" target="_blank">
-                    <div class="contact-logo-wrapper">
-                        <picture><img alt="github icon" class="contact-logo-img undraggable" draggable="false" src="img/icons/github.svg"></picture>
-                    </div>
-                    <div class="contact-text responsive-text-hideable">
-                        GitHub
+                    <!--                 <div class="contact-logo-wrapper">
+                    <picture><img alt="github icon" class="contact-logo-img undraggable" draggable="false" src="img/icons/github.svg"></picture>
+                </div> -->
+                    <div class="contact-text text-vertical-center">
+                        <span class="footer-icon"><i aria-hidden="true" class="fa fa-github"></i></span> <span class="responsive-text-hideable">GitHub</span>
                     </div>
                 </a>
             </div>
             <div class="contact-wrapper">
                 <a class="contact-link" href="mailto:carlosgabriel71@yahoo.com" rel="nofollow">
-                    <div class="contact-logo-wrapper">
-                        <picture><img alt="email icon" class="contact-logo-img undraggable" draggable="false" src="img/icons/email.svg"></picture>
-                    </div>
-                    <div class="contact-text responsive-text-hideable">
-                        carlosgabriel71@yahoo.com
+                    <!--                 <div class="contact-logo-wrapper">
+                    <picture><img alt="email icon" class="contact-logo-img undraggable" draggable="false" src="img/icons/email.svg"></picture>
+                </div> -->
+                    <div class="contact-text text-vertical-center">
+                        <span class="footer-icon"><i aria-hidden="true" class="fa fa-envelope"></i></span> <span class="responsive-text-hideable">carlosgabriel71@yahoo.com</span>
                     </div>
                 </a>
             </div>

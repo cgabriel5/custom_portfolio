@@ -58,7 +58,7 @@ app.module("utils", function(modules, name) {
      * @source [http://stackoverflow.com/questions/2146874/detect-if-a-page-has-a-vertical-scrollbar]
      */
     function is_vertical_scrollbar_visible() {
-        return document.body.clientHeight > window.innerHeight;
+        return document.body.scrollHeight > window.innerHeight;
     }
 
     // export to access in other modules

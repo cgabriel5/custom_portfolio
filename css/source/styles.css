@@ -51,12 +51,12 @@ body {
 }
 
 .nav-item:hover {
-    color: #5f636a;
-    background: #eee;
+    color: #000000;
+    background: #F3F3F3;
 }
 
 .nav-item:active {
-    color: #cbcbcb;
+    color: #555555;
 }
 
 .menu-link-rmargin {
@@ -68,7 +68,8 @@ body {
 }
 
 .nav-current {
-    background: #eee;
+    background: #F3F3F3;
+    color: #4280eb !important;
 }
 
 .nav-expanded-wrapper {
@@ -121,7 +122,8 @@ body {
 
 .popup-menu-wrapper {
     min-width: 100px;
-    margin: 35px 0px 0 -107px;
+    margin-left: -105px;
+    margin-top: 7px;
 }
 
 /* [ul.styles] */
@@ -163,7 +165,6 @@ body {
     word-wrap: break-word;
     hyphens: auto;    /* [hyphen,word-break](https://justmarkup.com/log/2015/07/dealing-with-long-words-in-css/) */
     overflow-wrap: break-word;
-    font-family: Libre Franklin;
 }
 
 .message-text-workcallout {
@@ -200,9 +201,16 @@ body {
     margin-top: -44px;
     padding: 10px;
     color: #fff;
-    box-shadow: inset 10px -50px 17px -15px rgba(0, 0, 0, .6);
     flex-flow: row nowrap;
-    justify-content: space-between;
+    justify-content: space-between;    /* [http://www.cssmatic.com/gradient-generator] */
+    background: rgba(255, 255, 255, 0);
+    background: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, rgba(0, 0, 0, 0.8)));
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+    background: -o-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+    background: -ms-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#000000', GradientType=0);
 }
 
 .project-name {
@@ -224,9 +232,20 @@ body {
     justify-content: center;
 }
 
+.footer-icon {
+}
+
 .contact-wrapper {
     display: flex;
     margin-left: 15px;
+    padding: 5px 0;
+}
+
+.contact-text {
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .contact-logo-img {
@@ -235,9 +254,9 @@ body {
     margin: 5px 5px 0 0;
 }
 
-.contact-text {
-    font-weight: 400;
-    margin-top: 8px;
+.footer-icon {
+    font-size: 25px;
+    margin-right: 5px;
 }
 
 .contact-link {
@@ -249,7 +268,7 @@ body {
 
 .contact-link:hover {
     text-decoration: underline;
-    color: #08c;
+    color: #4280eb;
 }
 
 /* [position.styles] */
@@ -279,6 +298,11 @@ body {
 
 .hidden {
     display: none;
+}
+
+.flex {
+    display: flex;
+    flex-flow: row nowrap;
 }
 
 /* prevents the flex child items from collapsing on themselves  */
@@ -439,6 +463,13 @@ body {
 
     .nav-compact-wrapper {
         display: block;
+    }
+
+}
+
+@media screen and (min-width:500px) {
+    .hide500plus {
+        display: none;
     }
 
 }

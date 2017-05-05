@@ -16,6 +16,7 @@ app.module("events", function(modules, name) {
         reset_navigation = core.reset_navigation,
         show_aboutme_section = core.show_aboutme_section,
         show_works_section = core.show_works_section,
+        show_resume = core.show_resume,
         highlight_tab = core.highlight_tab;
 
     // local module vars
@@ -48,6 +49,14 @@ app.module("events", function(modules, name) {
          */
         nav_works: function(target) {
             show_works_section();
+        },
+        /**
+         * @description [Shows the works section.]
+         * @param  {EventTargetElement} target [Browser provided clicked target element.]
+         * @return {Undefined}  [Nothing is returned.]
+         */
+        nav_resume: function(target) {
+            show_resume();
         },
         /**
          * @description [Scrolls down to the footer and highlights it.]
@@ -152,28 +161,30 @@ app.module("events", function(modules, name) {
                 // if the action call exists invoke it
                 if (action) action.call(original_target, target);
             }
+            // check whether to prevent browser's default action
+            if (delegation_data.preventDefault) e.preventDefault();
             // check wether we need to stop bubbling
             if (delegation_data.stop) return;
         }
     });
 
-    // when window loses focus hide any open popups
-    window.addEventListener("blur", function(e) {
-        // hide the last open popup
-        hide_last_open_popup();
-    });
+    // // when window loses focus hide any open popups
+    // window.addEventListener("blur", function(e) {
+    //     // hide the last open popup
+    //     hide_last_open_popup();
+    // });
 
     // show the contact tab when the BODY's vertical scrollbar is displayed
     window.addEventListener("resize", function(e) {
         show_contact_nav();
-        hide_last_open_popup();
+        // hide_last_open_popup();
     });
 
-    // hide the popup menu when the orientation changes
-    window.addEventListener("orientationchange", function(e) {
-        // hide the last open popup
-        hide_last_open_popup();
-    });
+    // // hide the popup menu when the orientation changes
+    // window.addEventListener("orientationchange", function(e) {
+    //     // hide the last open popup
+    //     hide_last_open_popup();
+    // });
 
     // listen to when the footer transition ends to remove the animation class
     document.addEventListener(which_animation_event(), function() {
