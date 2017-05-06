@@ -7,6 +7,7 @@ app.module("core", function(modules, name) {
         shortnames_elements = $$.shortnames_elements,
         aboutme_section = $$.aboutme_section,
         works_section = $$.works_section,
+        projects_wrapper = $$.projects_wrapper,
         is_vertical_scrollbar_visible = utils.is_vertical_scrollbar_visible,
         to_real_array = utils.to_real_array;
 
@@ -132,6 +133,59 @@ app.module("core", function(modules, name) {
             .classList.add("nav-current");
     }
 
+    function format(template, data) {
+        return template.replace(/\{\{(.*?)\}\}/g, function(match) {
+            // console.log(">>>>>", match);
+            match = match.replace(/^\{\{|\}\}$/g, "");
+            return data[match] ? data[match] : match;
+        });
+    }
+
+    function build_lang_html(langs) {
+        var template =
+            '<div class="lang-wrapper"><div class="lang-color-dot" style="background: {{color}}"></div><span class="lang-color-text">{{lang}}</span></div>';
+        var parts = [];
+        // loop over all the langs
+        for (var i = 0, l = langs.length; i < l; i++) {
+            var lang = langs[i];
+            // lookup the lang info
+            var color = globals.colors[lang];
+            console.log(">>>>", lang, color);
+            var html = format(template, { color: color, lang: lang });
+            parts.push(html);
+        }
+        console.log(">>>>", parts);
+        return parts.join("");
+    }
+
+    function build_projects() {
+        // console.log(">>>>>>>??");
+        // get the projects
+        var projects = globals.projects;
+        var template = globals.templates.project;
+        // fragment to store elements
+        // var fragment = document.createDocumentFragment();
+        var parts = [];
+        // loop over each project
+        for (var i = 0, l = projects.length; i < l; i++) {
+            var project = projects[i];
+            // var image = project.image, url = project.url, title = project.title;
+            var langs = project.langs;
+            // build the language HTML
+            var lang_html = build_lang_html(langs);
+            // add the html to the project object
+            project.langs = lang_html;
+            var f = format(template, project);
+            // console.log(i, f);
+            parts.push(f);
+            // fragment.appendChild(f);
+        }
+        // console.log(parts.join(""), projects_wrapper);
+        // inject the fragment into the DOM
+        // projects_wrapper.appendChild(fragment);
+        projects_wrapper.innerHTML = parts.join("");
+    }
+
     // export to access in other modules
     this[name].show_contact_nav = show_contact_nav;
     this[name].reset_navigation = reset_navigation;
@@ -142,4 +196,5 @@ app.module("core", function(modules, name) {
     this[name].show_resume = show_resume;
     this[name].parse_delegation_data = parse_delegation_data;
     this[name].highlight_tab = highlight_tab;
+    this[name].build_projects = build_projects;
 });

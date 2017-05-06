@@ -4,7 +4,8 @@ app.module("main", function(modules, name) {
     // get needed functions/data
     var show_aboutme_section = core.show_aboutme_section,
         show_contact_nav = core.show_contact_nav,
-        shortnames_2_emoticons = core.shortnames_2_emoticons;
+        shortnames_2_emoticons = core.shortnames_2_emoticons,
+        build_projects = core.build_projects;
 
     // show the about me section on loaded page
     show_aboutme_section();
@@ -14,4 +15,7 @@ app.module("main", function(modules, name) {
 
     // convert the emoticon shortnames to images :)
     shortnames_2_emoticons();
+
+    // build the projects
+    build_projects();
 });
