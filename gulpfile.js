@@ -13,7 +13,9 @@ var $ = require("gulp-load-plugins")({
     del = $.del,
     bs = $.browserSync,
     plumber = $.plumber,
-    clean = $.clean;
+    clean = $.clean,
+    rename = $.rename,
+    purify = $.purifycss;
 
 // create the browser-sync servers
 var bs1 = bs.create("localhost"),
@@ -196,6 +198,31 @@ gulp.task("csslibs", function(done) {
         .pipe($.cleanCss()) // minify for production
         .pipe(gulp.dest("dist/css/")) // dump in dist/ folder
         .pipe(bs1.stream());
+});
+
+// check for any unused CSS
+gulp.task("pure-css", function() {
+    return gulp
+        .src("./css/source/styles.css")
+        .pipe(
+            plumber({
+                errorHandler: function(error) {
+                    // [https://scotch.io/tutorials/prevent-errors-from-crashing-gulp-watch]
+                    // [https://cameronspear.com/blog/how-to-handle-gulp-watch-errors-with-plumber/]
+                    // [http://blog.ibangspacebar.com/handling-errors-with-gulp-watch-and-gulp-plumber/]
+                    notify("Error with `PURE-CSS` task.", true);
+                    this.emit("end");
+                }
+            })
+        )
+        .pipe(
+            purify(["./js/app.js", "./index.html"], {
+                info: true,
+                rejected: true
+            })
+        )
+        .pipe(rename("pure.css"))
+        .pipe(gulp.dest("./css/"));
 });
 
 // build app.js + minify + beautify
