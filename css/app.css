@@ -1164,10 +1164,6 @@ body {
 }
 
 @media screen and (max-width:320px) {
-    .position-center {
-        width: 300px;
-    }
-
     .message-title {
         font-size: 23px;
     }
