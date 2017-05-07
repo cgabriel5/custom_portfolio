@@ -225,6 +225,33 @@ gulp.task("pure-css", function() {
         .pipe(gulp.dest("./css/"));
 });
 
+// check for any unused CSS
+// maybe use command line arguments? [http://stackoverflow.com/a/23038290]
+gulp.task("pure-css-replace", function() {
+    // remove pure.css
+    del(["./css/pure.css"]);
+    return gulp
+        .src("./css/source/styles.css")
+        .pipe(
+            plumber({
+                errorHandler: function(error) {
+                    // [https://scotch.io/tutorials/prevent-errors-from-crashing-gulp-watch]
+                    // [https://cameronspear.com/blog/how-to-handle-gulp-watch-errors-with-plumber/]
+                    // [http://blog.ibangspacebar.com/handling-errors-with-gulp-watch-and-gulp-plumber/]
+                    notify("Error with `PURE-CSS-REPLACE` task.", true);
+                    this.emit("end");
+                }
+            })
+        )
+        .pipe(
+            purify(["./js/app.js", "./index.html"], {
+                info: true,
+                rejected: true
+            })
+        )
+        .pipe(gulp.dest("./css/source/"));
+});
+
 // build app.js + minify + beautify
 gulp.task("jsapp", function(done) {
     return gulp
