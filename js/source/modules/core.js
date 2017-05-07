@@ -9,7 +9,8 @@ app.module("core", function(modules, name) {
         works_section = $$.works_section,
         projects_wrapper = $$.projects_wrapper,
         is_vertical_scrollbar_visible = utils.is_vertical_scrollbar_visible,
-        to_real_array = utils.to_real_array;
+        to_real_array = utils.to_real_array,
+        format = utils.format;
 
     /**
      * @description [Shows the contact tab. Depends on the is_vertical_scrollbar_visible() function.]
@@ -100,7 +101,7 @@ app.module("core", function(modules, name) {
      * @return {Object}  [Returns an object containing its actions and or bubbling.]
      */
     function parse_delegation_data(target) {
-        // get the delegatiob data
+        // get the delegation data
         var delegation_data = target.getAttribute("data-delegation");
         // if no delegation data is provided return default object
         if (!delegation_data) {
@@ -133,56 +134,50 @@ app.module("core", function(modules, name) {
             .classList.add("nav-current");
     }
 
-    function format(template, data) {
-        return template.replace(/\{\{(.*?)\}\}/g, function(match) {
-            // console.log(">>>>>", match);
-            match = match.replace(/^\{\{|\}\}$/g, "");
-            return data[match] ? data[match] : match;
-        });
-    }
-
+    /**
+     * @description [Builds the HTML languages for each project.]
+     * @param  {Array} langs [The list of languages used for the project.]
+     * @return {String}       [The created HTML string.]
+     */
     function build_lang_html(langs) {
-        var template =
-            '<div class="lang-wrapper"><div class="lang-color-dot" style="background: {{color}}"></div><span class="lang-color-text">{{lang}}</span></div>';
-        var parts = [];
+        // grab template + colors
+        var template = globals.templates.language, colors = globals.colors;
+        // define vars
+        var parts = [], lang, color;
         // loop over all the langs
         for (var i = 0, l = langs.length; i < l; i++) {
-            var lang = langs[i];
+            // cache the current language
+            lang = langs[i];
             // lookup the lang info
-            var color = globals.colors[lang];
-            console.log(">>>>", lang, color);
-            var html = format(template, { color: color, lang: lang });
-            parts.push(html);
+            color = colors[lang];
+            // create the HTML string + add the HTML string to the parts array
+            parts.push(format(template, { color: color, lang: lang }));
         }
-        console.log(">>>>", parts);
         return parts.join("");
     }
 
+    /**
+     * @description [Builds the projects using the globals.projects array and then injects them into the page.]
+     * @return {Undefined}  [Nothing is returned.]
+     */
     function build_projects() {
-        // console.log(">>>>>>>??");
         // get the projects
-        var projects = globals.projects;
-        var template = globals.templates.project;
-        // fragment to store elements
-        // var fragment = document.createDocumentFragment();
-        var parts = [];
+        var projects = globals.projects, template = globals.templates.project;
+        var parts = [], project, langs, lang_html;
         // loop over each project
         for (var i = 0, l = projects.length; i < l; i++) {
-            var project = projects[i];
-            // var image = project.image, url = project.url, title = project.title;
-            var langs = project.langs;
+            // cache the current project
+            project = projects[i];
+            // get the project languages
+            langs = project.langs;
             // build the language HTML
-            var lang_html = build_lang_html(langs);
-            // add the html to the project object
+            lang_html = build_lang_html(langs);
+            // add the HTML to the project object, overriding the langs prop
             project.langs = lang_html;
-            var f = format(template, project);
-            // console.log(i, f);
-            parts.push(f);
-            // fragment.appendChild(f);
+            // create the HTML string + add the string to the parts array
+            parts.push(format(template, project));
         }
-        // console.log(parts.join(""), projects_wrapper);
         // inject the fragment into the DOM
-        // projects_wrapper.appendChild(fragment);
         projects_wrapper.innerHTML = parts.join("");
     }
 

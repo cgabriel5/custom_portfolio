@@ -61,9 +61,23 @@ app.module("utils", function(modules, name) {
         return document.body.scrollHeight > window.innerHeight;
     }
 
+    /**
+     * @description [Formats template with provided data object.]
+     * @param  {String} template [The template to use.]
+     * @param  {Object} data     [The object containing the data to replace placeholders with.]
+     * @return {Undefined}  [Nothing is returned.]
+     */
+    function format(template, data) {
+        return template.replace(/\{\{(.*?)\}\}/g, function(match) {
+            match = match.replace(/^\{\{|\}\}$/g, "");
+            return data[match] ? data[match] : match;
+        });
+    }
+
     // export to access in other modules
     this[name].to_real_array = to_real_array;
     this[name].which_animation_event = which_animation_event;
     this[name].create_path = create_path;
     this[name].is_vertical_scrollbar_visible = is_vertical_scrollbar_visible;
+    this[name].format = format;
 });

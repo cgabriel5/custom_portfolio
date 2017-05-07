@@ -1,5 +1,10 @@
 app.module("globals", function(modules, name) {
     // define vars
+
+    /**
+     * @description [Array containing project objects.]
+     * @type {Array}
+     */
     var projects = [
         {
             title: "InteractionJS (events)",
@@ -59,9 +64,13 @@ app.module("globals", function(modules, name) {
         }
     ];
 
+    /**
+     * @description [Project HTML templates.]
+     * @type {Object}
+     */
     var templates = {
-        // project: '<div class="project-item-wrapper"><div class="project-item-innerwrapper"><div class="project-img-wrapper"><picture><img alt="{{image_alt}}" class="project-img undraggable" draggable="false" src="img/projects/{{image}}"></picture></div><div class="project-info-wrapper"><span class="project-name unselectable">{{title}}</span><a href="{{url}}" class="project-link" target="_blank"><span class="project-link-external"><i aria-hidden="true" class="fa fa-external-link-square"></i></span></a></div></div></div>',
-        project: '<div class="project-item-wrapper"><div class="project-title"><a href="{{url}}" target="_blank" class="project-link">{{title}}</a></div><div class="project-description">{{description}}</div><div class="project-languages-wrapper">{{langs}}</div></div>'
+        project: '<div class="project-item-wrapper"><div class="project-title"><a href="{{url}}" target="_blank" class="project-link">{{title}}</a></div><div class="project-description">{{description}}</div><div class="project-languages-wrapper">{{langs}}</div></div>',
+        language: '<div class="lang-wrapper"><div class="lang-color-dot" style="background: {{color}}"></div><span class="lang-color-text">{{lang}}</span></div>'
     };
 
     /**

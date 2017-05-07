@@ -168,23 +168,10 @@ app.module("events", function(modules, name) {
         }
     });
 
-    // // when window loses focus hide any open popups
-    // window.addEventListener("blur", function(e) {
-    //     // hide the last open popup
-    //     hide_last_open_popup();
-    // });
-
     // show the contact tab when the BODY's vertical scrollbar is displayed
     window.addEventListener("resize", function(e) {
         show_contact_nav();
-        // hide_last_open_popup();
     });
-
-    // // hide the popup menu when the orientation changes
-    // window.addEventListener("orientationchange", function(e) {
-    //     // hide the last open popup
-    //     hide_last_open_popup();
-    // });
 
     // listen to when the footer transition ends to remove the animation class
     document.addEventListener(which_animation_event(), function() {
