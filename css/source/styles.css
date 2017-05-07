@@ -9,10 +9,6 @@ body {
     margin: 0;
 }
 
-.ios-click-fix {
-    cursor: pointer;
-}
-
 /* [header.styles] */
 .header-wrapper {
     display: flex;
@@ -29,7 +25,7 @@ body {
     padding: 0 9px 0 7px;
     cursor: default;
     text-align: center;
-    color: #fff;    /* leaf  */
+    color: #fff;  /* leaf  */
     border-radius: 40px 100px 0 100px;
     background: #699935;
     justify-content: center;
@@ -146,18 +142,9 @@ body {
 .projects-wrapper {
     display: flex;
     width: 100%;
-    padding-top: 10px;
     flex-flow: row wrap;
     justify-content: space-between;
 }
-
-/*.projects-wrapper {
-    display: flex;
-    width: 100%;
-    padding-top: 10px;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-}*/
 
 /* [messages.styles] */
 .message-title {
@@ -171,7 +158,7 @@ body {
     margin: 0 0 20px;
     padding: 0;
     word-wrap: break-word;
-    hyphens: auto;    /* [hyphen,word-break](https://justmarkup.com/log/2015/07/dealing-with-long-words-in-css/) */
+    hyphens: auto;  /* [hyphen,word-break](https://justmarkup.com/log/2015/07/dealing-with-long-words-in-css/) */
     overflow-wrap: break-word;
 }
 
@@ -219,40 +206,6 @@ body {
     font-weight: normal;
 }
 
-.project-languages-wrapper {
-}
-
-/*.project-item-wrapper {
-    display: flex;
-    width: 100%;
-    margin: 0 20px 30px 0;
-    flex-flow: column nowrap;
-}
-
-.project-item-wrapper:last-of-type {
-    margin-right: 0;
-}*/
-.project-item-innerwrapper {
-    overflow: hidden;
-    border-radius: 7px;
-}
-
-.project-img {
-    display: block;
-    width: 100%;
-}
-
-.project-info-wrapper {
-    position: relative;
-    display: flex;
-    margin-top: -44px;
-    padding: 10px;
-    color: #fff;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    background: rgba(0, 0, 0, 0.65);
-}
-
 .project-name {
     font-weight: bold;
     cursor: default;
@@ -290,9 +243,6 @@ body {
     justify-content: center;
 }
 
-.footer-icon {
-}
-
 .contact-wrapper {
     display: flex;
     margin-left: 15px;
@@ -304,12 +254,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.contact-logo-img {
-    width: 30px;
-    height: 30px;
-    margin: 5px 5px 0 0;
 }
 
 .footer-icon {
@@ -367,9 +311,9 @@ body {
 .header-wrapper,
 .footer-wrapper {
 
-    /* [https://philipwalton.com/articles/normalizing-cross-browser-flexbox-bugs/] */
-
-    /* [https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/] */
+    /* [https://philipwalton.com/articles/normalizing-cross-browser-flexbox-bugs/]
+       [https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/]
+     */
     flex-shrink: 0;
 }
 
@@ -398,10 +342,9 @@ body {
 
 /* [animation resources] */
 
-/* [source::api](http://www.w3schools.com/cssref/css3_pr_animation.asp) */
-
-/* [source](http://stackoverflow.com/questions/33835096/css-to-pan-background-image-back-and-forth) */
-
+/* [source::api](http://www.w3schools.com/cssref/css3_pr_animation.asp)
+   [source](http://stackoverflow.com/questions/33835096/css-to-pan-background-image-back-and-forth)
+*/
 .footer-animate {
     animation-name: footer-animate;
     animation-duration: 2s;
@@ -445,7 +388,7 @@ body {
 /* [media_queries.styles] */
 @media screen and (max-width:950px) {
     .position-center {
-        width: calc(100% - 100px);
+        width: 100%;
     }
 
     .message-title {
@@ -458,6 +401,18 @@ body {
 
 }
 
+@media screen and (min-width:811px) {
+
+    /* [http://stackoverflow.com/a/29771071]
+      selects the last child when odd or the last 2 children when there is an event amount of children
+      */
+    .project-item-wrapper:last-child,
+    .project-item-wrapper:nth-last-of-type(-n+2):not(:nth-child(even)) {
+        margin-bottom: 0;
+    }
+
+}
+
 @media screen and (max-width:810px) {
     .project-item-wrapper {
         width: 100%;
@@ -466,10 +421,6 @@ body {
 }
 
 @media screen and (max-width:768px) {
-    .position-center {
-        width: 100%;
-    }
-
     .project-item-wrapper {
         width: 100%;
     }
@@ -489,17 +440,6 @@ body {
 }
 
 @media screen and (max-width:680px) {
-
-    /*    .project-item-wrapper {
-        width: 250px;
-        margin-right: 0;
-    }*/
-
-    /*    .projects-wrapper {
-        flex-flow: row wrap;
-        justify-content: space-around;
-    }*/
-
     .project-name {
         font-size: 14px;
     }
@@ -507,13 +447,6 @@ body {
 }
 
 @media screen and (max-width:625px) {
-    .position-center {
-        width: 100%;
-    }
-
-    /*    .project-item-wrapper {
-        width: 200px;
-    }*/
     .responsive-text-hideable {
         display: none;
     }
@@ -521,10 +454,10 @@ body {
 }
 
 @media screen and (max-width:500px) {
+    .position-center {
+        padding: 15px;
+    }
 
-    /*    .project-item-wrapper {
-        width: 270px;
-    }*/
     .nav-expanded-wrapper {
         display: none;
     }
