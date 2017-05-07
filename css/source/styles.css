@@ -174,12 +174,7 @@ body {
     padding: 20px;
     border-radius: 4px;
     margin-bottom: 10px;
-    background: #f6f6f6;
-}
-
-.project-item-wrapper:hover {
-    box-shadow: inset 0px 0px 0px 2px #4280eb;
-    background: aliceblue;
+    border: 1px solid #e2e2e2;
 }
 
 .project-link {
