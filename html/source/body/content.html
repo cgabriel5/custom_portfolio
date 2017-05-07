@@ -3,7 +3,7 @@
     <header class="header-wrapper position-center">
         <div class="header-logo-wrapper unselectable"></div>
         <nav class="nav-wrapper">
-            <!-- extended menu -->
+            <!-- EXTENDED MENU -->
             <div class="nav-expanded-wrapper">
                 <div class="nav-item nav-current unselectable" data-delegation="nav_home,nav_tab_reset;stop" id="nav-home">
                     <span class="text-vertical-center">
@@ -34,51 +34,43 @@
                     </span>
                 </div>
             </div>
-            <!-- hamburger menu -->
-            <div>
-                <!-- hamburger menu items -->
-                <!-- [https://developers.google.com/web/updates/2016/06/absolute-positioned-children] -->
-                <!-- [https://googlechrome.github.io/samples/css-flexbox-abspos/] -->
-                <div class="absolute-child-fix-wrapper hide500plus">
-                    <div class="popup popup-menu-wrapper hidden unselectable" data-delegation="hamburger_menu;stop" id="popup-menu-wrapper">
-                        <ul class="ul-reset">
-                            <li class="popup-item text-vertical-center flex" data-delegation="nav_popup_home;" data-syncid="nav-home" id="nav-popup-home">
-                                <!-- <span class="text-vertical-center"> -->
-                                <span class="menu-link-rmargin">
+            <!-- [https://developers.google.com/web/updates/2016/06/absolute-positioned-children] -->
+            <!-- [https://googlechrome.github.io/samples/css-flexbox-abspos/] -->
+            <!-- HAMBURGER MENU -->
+            <div class="absolute-child-fix-wrapper hide500plus">
+                <div class="popup popup-menu-wrapper hidden unselectable" data-delegation="hamburger_menu;stop" id="popup-menu-wrapper">
+                    <!-- HAMBURGER MENU ITEMS -->
+                    <ul class="ul-reset">
+                        <li class="popup-item text-vertical-center flex" data-delegation="nav_popup_home;" data-syncid="nav-home" id="nav-popup-home">
+                            <span class="menu-link-rmargin">
                                     <i aria-hidden="true" class="fa fa-home"></i>
                                 </span>
-                                <span>home</span>
-                                <!-- </span> -->
-                            </li>
-                            <li class="popup-item text-vertical-center flex" data-delegation="nav_popup_works;" data-syncid="nav-works" id="nav-popup-works">
-                                <!-- <span class="text-vertical-center"> -->
-                                <span class="menu-link-rmargin">
+                            <span>home</span>
+                        </li>
+                        <li class="popup-item text-vertical-center flex" data-delegation="nav_popup_works;" data-syncid="nav-works" id="nav-popup-works">
+                            <span class="menu-link-rmargin">
                             <i aria-hidden="true" class="fa fa-file-code-o"></i>
                         </span>
-                                <span>projects</span>
-                                <!-- </span> -->
-                            </li>
-                            <li class="popup-item text-vertical-center flex" data-delegation="nav_resume;stop;pd" data-syncid="nav-resume" id="nav-popup-resume">
-                                <a href="https://cgabriel5.github.io/resume/" target="_blank" class="a-unstyle text-vertical-center flex">
-                                    <span class="menu-link-rmargin">
+                            <span>projects</span>
+                        </li>
+                        <li class="popup-item text-vertical-center flex" data-delegation="nav_resume;stop;pd" data-syncid="nav-resume" id="nav-popup-resume">
+                            <a href="https://cgabriel5.github.io/resume/" target="_blank" class="a-unstyle text-vertical-center flex">
+                                <span class="menu-link-rmargin">
                             <i aria-hidden="true" class="fa fa-external-link-square"></i>
                         </span> <span>resume</span>
-                                </a>
-                            </li>
-                            <li class="popup-item text-vertical-center flex hidden" data-delegation="nav_popup_contact;" data-syncid="nav-contact" id="nav-popup-contact">
-                                <!-- <span class="text-vertical-center"> -->
-                                <span class="menu-link-rmargin">
+                            </a>
+                        </li>
+                        <li class="popup-item text-vertical-center flex hidden" data-delegation="nav_popup_contact;" data-syncid="nav-contact" id="nav-popup-contact">
+                            <span class="menu-link-rmargin">
                             <i aria-hidden="true" class="fa fa-envelope"></i>
                         </span>
-                                <span>contact</span>
-                                <!-- </span> -->
-                            </li>
-                        </ul>
-                    </div>
+                            <span>contact</span>
+                        </li>
+                    </ul>
                 </div>
-                <div class="nav-compact-wrapper unselectable" data-delegation="hamburger_menu,cache_popup;stop" id="nav-hamburger-menu">
-                    <i aria-hidden="true" class="fa fa-bars"></i>
-                </div>
+            </div>
+            <div class="nav-compact-wrapper unselectable" data-delegation="hamburger_menu,cache_popup;stop" id="nav-hamburger-menu">
+                <i aria-hidden="true" class="fa fa-bars"></i>
             </div>
         </nav>
     </header>
@@ -98,64 +90,19 @@
             </div>
             <p class="message-text">Listed below are the projects I have created. Feel free to check them out!</p>
             <p class="message-text message-text-workcallout">Interested in hiring me? Want to work together? Have projects needed to be brought to life? <span class="contact-link" data-delegation="nav_contact;stop">Blast an email my way</span>. I'm ready to hear from you! <span class="emoticon-shortname">:nerd:</span></p>
-            <!-- TODO: add completed projects here. the ones shown are just placeholders. -->
-            <div class="projects-wrapper" id="projects-wrapper">
-                <!--                 <div class="project-item-wrapper">
-                    <div class="project-title"><a href="{{url}}" target="_blank">{{title}}</a></div>
-                    <div class="project-description">{{description}}</div>
-                    <div class="project-languages-wrapper">{{langs}}</div>
-                </div> -->
-                <!--                 <div class="project-item-wrapper">
-                    <div class="project-item-innerwrapper">
-                        <div class="project-img-wrapper">
-                            <picture><img alt="appify app" class="project-img undraggable" draggable="false" src="img/projects/interactionsjs.jpg"></picture>
-                        </div>
-                        <div class="project-info-wrapper">
-                            <span class="project-name unselectable">InteractionJS (events)</span><a href="https://github.com/cgabriel5/interactionjs" class="project-link" target="_blank"><span class="project-link-external"><i aria-hidden="true" class="fa fa-external-link-square"></i></span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-item-wrapper">
-                    <div class="project-item-innerwrapper">
-                        <div class="project-img-wrapper">
-                            <picture><img alt="sunflower app" class="project-img undraggable" draggable="false" src="img/projects/httpjs.jpg"></picture>
-                        </div>
-                        <div class="project-info-wrapper">
-                            <span class="project-name unselectable">XHR-Wrapper (httpjs)</span><a href="https://github.com/cgabriel5/httpjs" class="project-link" target="_blank"><span class="project-link-external"><i aria-hidden="true" class="fa fa-external-link-square"></i></span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-item-wrapper">
-                    <div class="project-item-innerwrapper">
-                        <div class="project-img-wrapper">
-                            <picture><img alt="bokeh app" class="project-img undraggable" draggable="false" src="img/projects/monitorjs.jpg"></picture>
-                        </div>
-                        <div class="project-info-wrapper">
-                            <span class="project-name unselectable">MonitorJS</span><a href="https://github.com/cgabriel5/monitorjs" class="project-link" target="_blank"><span class="project-link-external"><i aria-hidden="true" class="fa fa-external-link-square"></i></span></a>
-                        </div>
-                    </div>
-                </div> -->
-            </div>
+            <!-- PROJECTS -->
+            <div class="projects-wrapper" id="projects-wrapper"></div>
         </div>
     </main>
     <!-- FOOTER CONTENT -->
     <footer class="footer-wrapper">
-        <!-- [icons source](https://www.iconfinder.com/iconsets/black-white-social-media) -->
-        <!-- [creator](https://www.iconfinder.com/alfredoh) -->
-        <!-- [license](https://creativecommons.org/licenses/by/3.0/) -->
         <div class="contact-wrapper">
-            <!-- <div class="contact-logo-wrapper">
-                <picture><img alt="location icon" class="contact-logo-img undraggable" draggable="false" src="img/icons/location.svg"></picture>
-            </div> -->
             <div class="contact-text text-vertical-center">
                 <span class="footer-icon"><i aria-hidden="true" class="fa fa-map-marker"></i></span> Modesto, CA
             </div>
         </div>
         <div class="contact-wrapper">
             <a class="contact-link" href="https://github.com/cgabriel5" target="_blank">
-                <!--                 <div class="contact-logo-wrapper">
-                    <picture><img alt="github icon" class="contact-logo-img undraggable" draggable="false" src="img/icons/github.svg"></picture>
-                </div> -->
                 <div class="contact-text text-vertical-center">
                     <span class="footer-icon"><i aria-hidden="true" class="fa fa-github"></i></span> <span class="responsive-text-hideable">GitHub</span>
                 </div>
@@ -163,9 +110,6 @@
         </div>
         <div class="contact-wrapper">
             <a class="contact-link" href="mailto:carlosgabriel71@yahoo.com" rel="nofollow">
-                <!--                 <div class="contact-logo-wrapper">
-                    <picture><img alt="email icon" class="contact-logo-img undraggable" draggable="false" src="img/icons/email.svg"></picture>
-                </div> -->
                 <div class="contact-text text-vertical-center">
                     <span class="footer-icon"><i aria-hidden="true" class="fa fa-envelope"></i></span> <span class="responsive-text-hideable">carlosgabriel71@yahoo.com</span>
                 </div>
