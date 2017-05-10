@@ -18,16 +18,18 @@
   "homepage": "https://github.com/{{GIT_USER_ID}}/portfolio#readme",
   "private": true,
   "devDependencies": {
-    "autoprefixer": "^6.7.7",
+    "autoprefixer": "^7.0.1",
     "browser-sync": "^2.18.8",
     "del": "^2.2.2",
     "file-exists": "^3.0.2",
+    "find-free-port": "^1.0.2",
     "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^3.1.1",
+    "gulp-autoprefixer": "^4.0.0",
     "gulp-clean": "^0.3.2",
-    "gulp-clean-css": "^3.0.4",
+    "gulp-clean-css": "^3.2.0",
     "gulp-concat": "^2.6.1",
     "gulp-header": "^1.8.8",
+    "gulp-if": "^2.0.2",
     "gulp-jsbeautifier": "^2.1.0",
     "gulp-load-plugins": "^1.5.0",
     "gulp-minify-html": "^1.0.6",
@@ -35,11 +37,14 @@
     "gulp-purifycss": "^0.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
+    "gulp-shorthand": "^1.1.0",
     "gulp-uglify": "^2.1.2",
     "markdown-styles": "^3.1.9",
     "node-notifier": "^5.1.2",
-    "opn": "^4.0.2",
-    "run-sequence": "^1.2.2"
+    "opn": "^5.0.0",
+    "pipe-error-stop": "^0.0.11",
+    "run-sequence": "^1.2.2",
+    "yargs": "^8.0.1"
   },
   "dependencies": {}
 }
