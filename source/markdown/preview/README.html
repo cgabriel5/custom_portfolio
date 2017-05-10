@@ -15,22 +15,33 @@
 <li>Remove setup sections (§) from the <code>README</code> after reading and fully understanding what to do.</li>
 <li>Boilerplate uses <code>NodeJS</code> and <code>Gulp</code>. <em>Please make sure they are installed</em>.</li>
 </ol>
-<h2 id="§-npm-setup">§ NPM Setup</h2>
+<h2 id="§-yarn-setup">§ Yarn Setup</h2>
 <p>Run the following commands in the following order:</p>
 <ol class="list">
-<li><strong><code>$ npm init</code></strong> &mdash; Update <code>package.json</code> as needed.</li>
-<li><strong><code>$ npm install</code></strong> &mdash; Installs needed <code>npm</code> modules.</li>
+<li><strong><code>$ yarn init</code></strong> &mdash; Update <code>package.json</code> as needed.</li>
+<li><strong><code>$ yarn install</code></strong> &mdash; Installs needed <code>package.json</code> modules.</li>
 </ol>
 <h2 id="§-using-gulp">§ Using Gulp</h2>
 <ol class="list">
 <li><strong><code>$ gulp</code></strong> &mdash; Runs the <code>default</code> command. This command runs the <code>build</code> and <code>watch</code> commands. Creating the needed folders/files, starts <code>browser-sync</code> servers, &amp; watches project for file changes.</li>
 <li><strong><code>$ gulp build</code></strong> &mdash; Builds the needed folders/files for the app.</li>
 <li><strong><code>$ gulp watch</code></strong> &mdash; Watches project for file changes. Running the needed tasks to rebuild files.</li>
-<li><strong><code>$ gulp reset</code></strong> &mdash; Resets project to like when it was downloaded, to its original state.</li>
-<li><strong><code>$ gulp open-index</code></strong> &mdash; Opens <code>index.html</code> in the browser.</li>
-<li><strong><code>$ gulp open-md</code></strong> &mdash; Opens <code>README.md</code> <code>HTML</code> preview in the browser.</li>
-<li><strong>Modify</strong> <code>gulpfile.js</code> as desired.</li>
-<li><strong>Note</strong> &mdash; The <code>$ gulp reset</code> command uses the <code>source/</code> directory to reset the project to its original state. Changes made to this folder will be transferred over when the command is used.</li>
+<li><strong><code>$ gulp reset</code></strong> &mdash; Resets project to its original, downloaded &quot;factory&quot; state.</li>
+<li><strong><code>$ gulp open -p/--port [num] -f/--file [str]</code></strong> &mdash; Will open the given file at the given port in browser. <ul class="list">
+<li><strong><code>$ gulp open -p 3000 -f index.html</code></strong> Will open <code>index.html</code> at port <code>3000</code>.</li>
+<li><strong><code>$ gulp open -p 3002 -f readme.md</code></strong> Will open <code>index.html</code> at port <code>3002</code>.</li>
+</ul>
+</li>
+<li><p><strong><code>$ gulp purify -D/--del [?flag-only] -r/--remove [?flag-only]</code></strong> &mdash; Will purify CSS of any unused CSS. </p>
+<ul class="list">
+<li><strong><code>$ gulp purify</code></strong> Will create <code>pure.css</code> and <strong>only</strong> scan for any unused CSS.</li>
+<li><strong><code>$ gulp purify -D</code></strong> Will delete <code>pure.css</code> file.</li>
+<li><strong><code>$ gulp purify --remove</code></strong> Will delete <code>pure.css</code> <strong>and</strong> remove unused CSS from <code>/css/source/styles.css</code>.</li>
+</ul>
+</li>
+<li><p><strong>Modify</strong> <code>gulpfile.js</code> as desired.</p>
+</li>
+<li><strong>Note</strong> &mdash; The <code>$ gulp reset</code> command uses the <code>source/</code> directory to reset the project to its original state. Changes made to this folder will be transferred over when the command is used. Therefore, changes to <code>source/</code> are not recommended.</li>
 </ol>
 <h2 id="§-files-to-modify">§ Files To Modify</h2>
 <ol class="list">

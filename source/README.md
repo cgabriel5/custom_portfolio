@@ -3,20 +3,26 @@
 2. Remove setup sections (§) from the `README` after reading and fully understanding what to do.
 3. Boilerplate uses `NodeJS` and `Gulp`. *Please make sure they are installed*.
 
-## § NPM Setup
+## § Yarn Setup
 Run the following commands in the following order:
-1. **`$ npm init`** &mdash; Update `package.json` as needed.
-2. **`$ npm install`** &mdash; Installs needed `npm` modules.
+1. **`$ yarn init`** &mdash; Update `package.json` as needed.
+2. **`$ yarn install`** &mdash; Installs needed `package.json` modules.
 
 ## § Using Gulp
 1. **`$ gulp`** &mdash; Runs the `default` command. This command runs the `build` and `watch` commands. Creating the needed folders/files, starts `browser-sync` servers, & watches project for file changes.
 2. **`$ gulp build`** &mdash; Builds the needed folders/files for the app.
 3. **`$ gulp watch`** &mdash; Watches project for file changes. Running the needed tasks to rebuild files.
-4. **`$ gulp reset`** &mdash; Resets project to like when it was downloaded, to its original state.
-5. **`$ gulp open-index`** &mdash; Opens `index.html` in the browser.
-6. **`$ gulp open-md`** &mdash; Opens `README.md` `HTML` preview in the browser.
+4. **`$ gulp reset`** &mdash; Resets project to its original, downloaded "factory" state.
+5. **`$ gulp open -p/--port [num] -f/--file [str]`** &mdash; Will open the given file at the given port in browser. 
+    * **`$ gulp open -p 3000 -f index.html`** Will open `index.html` at port `3000`.
+    * **`$ gulp open -p 3002 -f readme.md`** Will open `index.html` at port `3002`.
+6. **`$ gulp purify -D/--del [?flag-only] -r/--remove [?flag-only]`** &mdash; Will purify CSS of any unused CSS. 
+    * **`$ gulp purify`** Will create `pure.css` and **only** scan for any unused CSS.
+    * **`$ gulp purify -D`** Will delete `pure.css` file.
+    * **`$ gulp purify --remove`** Will delete `pure.css` **and** remove unused CSS from `/css/source/styles.css`.
+
 7. **Modify** `gulpfile.js` as desired.
-8. **Note** &mdash; The `$ gulp reset` command uses the `source/` directory to reset the project to its original state. Changes made to this folder will be transferred over when the command is used.
+8. **Note** &mdash; The `$ gulp reset` command uses the `source/` directory to reset the project to its original state. Changes made to this folder will be transferred over when the command is used. Therefore, changes to `source/` are not recommended.
 
 ## § Files To Modify
 1. **CSS** &mdash; Modify `css/source/styles.css`. `Gulp` will handle auto-prefixing, minifying, and concatenation.

@@ -13,13 +13,25 @@ var $ = require("gulp-load-plugins")({
     del = $.del,
     bs = $.browserSync,
     plumber = $.plumber,
-    clean = $.clean;
+    clean = $.clean,
+    rename = $.rename,
+    purify = $.purifycss,
+    replace = $.replace,
+    pipe_error_stop = $.pipeErrorStop,
+    shorthand = $.shorthand,
+    cache = $.cache,
+    remember = $.remember,
+    find_free_port = $.findFreePort,
+    gulpif = $.if,
+    cli = $.yargs.argv;
 
 // create the browser-sync servers
 var bs1 = bs.create("localhost"),
     bs2 = bs.create("readme"),
-    port1 = 3000,
-    port2 = 3002;
+    ports = {
+        bs1: { app: null, ui: null },
+        bs2: { app: null, ui: null }
+    };
 
 // browsers to open index.html/markdown preview in
 var browsers = ["google-chrome"]; // , "firefox"];
@@ -41,6 +53,14 @@ var autoprefixer_browsers = [
     "Samsung >= 4",
     "ChromeAndroid >= 56"
 ];
+
+// Get the current task name inside task itself
+// [http://stackoverflow.com/a/27535245]
+gulp.Gulp.prototype.__runTask = gulp.Gulp.prototype._runTask;
+gulp.Gulp.prototype._runTask = function(task) {
+    this.currentTask = task;
+    this.__runTask(task);
+};
 
 /**
  * @description [Builds the localhost URL dynamically.]
@@ -82,6 +102,22 @@ var notify = function(message, error) {
     });
 };
 
+/**
+ * @description [Stream pipe error handler.]
+ * @param  {Error} error [The error object.]
+ * @return {Undefined}       [Nothins is returned.]
+ */
+var pipe_error = function(error) {
+    notify("Error with `" + this.currentTask.name + "` task.", true);
+    this.emit("end");
+};
+
+// // example gulpif condition check
+// var condition = function(file) {
+//     // check the file name
+//     return /styles.css$/.test(file.path);
+// };
+
 // tasks
 // init HTML files + minify
 gulp.task("html", function(done) {
@@ -102,17 +138,7 @@ gulp.task("html", function(done) {
             ],
             { cwd: "html/source/" }
         )
-        .pipe(
-            plumber({
-                errorHandler: function(error) {
-                    // [https://scotch.io/tutorials/prevent-errors-from-crashing-gulp-watch]
-                    // [https://cameronspear.com/blog/how-to-handle-gulp-watch-errors-with-plumber/]
-                    // [http://blog.ibangspacebar.com/handling-errors-with-gulp-watch-and-gulp-plumber/]
-                    notify("Error with `HTML` task.", true);
-                    this.emit("end");
-                }
-            })
-        )
+        .pipe(plumber({ errorHandler: pipe_error.bind(this) }))
         .pipe($.concat("index.html"))
         .pipe(
             $.jsbeautifier({
@@ -128,74 +154,123 @@ gulp.task("html", function(done) {
                 wrap_line_length: 0
             })
         )
+        .pipe(pipe_error_stop({ errorCallback: pipe_error.bind(this) }))
         .pipe(gulp.dest("./"))
         .pipe($.minifyHtml())
+        .pipe(pipe_error_stop({ errorCallback: pipe_error.bind(this) }))
         .pipe(gulp.dest("dist/"))
         .pipe(bs1.stream());
 });
 
+gulp.task("precssapp-clean-styles", function(done) {
+    return (gulp
+            .src(["styles.css"], {
+                cwd: "css/source/"
+            })
+            .pipe(plumber({ errorHandler: pipe_error.bind(this) }))
+            // spot prefixes [https://www.mikestreety.co.uk/blog/find-and-remove-vendor-prefixes-in-your-css-using-regex]
+            .pipe(
+                replace(
+                    /(\s+)?\-(moz|o|webkit|ms|khtml)\-(?!font-smoothing|osx|print|backface).+?;/gi,
+                    ""
+                )
+            )
+            .pipe(replace(/([ |,|:])(\.\d+)/g, "$10$2")) // 0px => 0 (leading_zeros)
+            .pipe(
+                // 0px => 0 (empty_zeros) & 0.0 => 0
+                replace(
+                    /(\b0(cm|em|ex|in|mm|pc|pt|px|vh|vw|vmin)|0\.0[^\d])/gi,
+                    "0"
+                )
+            )
+            // css color lowercase check /#[A-Fa-f0-9]{3,6}/ (hex_colors)
+            .pipe(
+                replace(/#[a-f0-9]{3,6}/gi, function(match) {
+                    return match.toLowerCase();
+                })
+            )
+            // line breaks [http://stackoverflow.com/a/16369725]
+            // .pipe(replace(/^\s*[\r\n]/gm, ""))
+            .pipe(pipe_error_stop({ errorCallback: pipe_error.bind(this) }))
+            .pipe(gulp.dest("css/source/")) // dump into development folder
+            .pipe(bs1.stream()) );
+});
+
 // build app.css + autoprefix + minify
-gulp.task("cssapp", function(done) {
-    return gulp
-        .src(["normalize.css", "base.css", "styles.css"], {
-            cwd: "css/source/"
-        })
-        .pipe(
-            plumber({
-                errorHandler: function(error) {
-                    // [https://scotch.io/tutorials/prevent-errors-from-crashing-gulp-watch]
-                    // [https://cameronspear.com/blog/how-to-handle-gulp-watch-errors-with-plumber/]
-                    // [http://blog.ibangspacebar.com/handling-errors-with-gulp-watch-and-gulp-plumber/]
-                    notify("Error with `CSS` task.", true);
-                    this.emit("end");
-                }
+gulp.task("cssapp", ["precssapp-clean-styles"], function(done) {
+    return (gulp
+            .src(["normalize.css", "base.css", "styles.css", "helpers.css"], {
+                cwd: "css/source/"
             })
-        )
-        .pipe($.concat("app.css"))
-        .pipe(
-            $.autoprefixer({
-                browsers: autoprefixer_browsers,
-                cascade: false
-            })
-        )
-        .pipe(gulp.dest("css/")) // dump into development folder
-        .pipe($.cleanCss()) // minify for production
-        .pipe(gulp.dest("dist/css/")) // dump in dist/ folder
-        .pipe(bs1.stream());
+            .pipe(plumber({ errorHandler: pipe_error.bind(this) }))
+            .pipe(
+                $.autoprefixer({
+                    browsers: autoprefixer_browsers,
+                    cascade: false
+                })
+            )
+            // .pipe(postcss([css_declaration_sorter({ order: "smacss" })]))
+            .pipe(shorthand())
+            .pipe($.concat("app.css"))
+            .pipe(pipe_error_stop({ errorCallback: pipe_error.bind(this) }))
+            .pipe(gulp.dest("css/")) // dump into development folder
+            .pipe($.cleanCss()) // minify for production
+            .pipe(pipe_error_stop({ errorCallback: pipe_error.bind(this) }))
+            .pipe(gulp.dest("dist/css/")) // dump in dist/ folder
+            .pipe(bs1.stream()) );
 });
 
 // build libs.css + minify + beautify
 gulp.task("csslibs", function(done) {
+    return (gulp
+            .src(
+                [
+                    // add any used css library paths here
+                    "font-awesome-4.7.0/css/font-awesome.css"
+                ],
+                { cwd: "css/libs/" }
+            )
+            .pipe(plumber({ errorHandler: pipe_error.bind(this) }))
+            .pipe($.concat("libs.css"))
+            .pipe(
+                $.autoprefixer({
+                    browsers: autoprefixer_browsers,
+                    cascade: false
+                })
+            )
+            // .pipe(postcss([css_declaration_sorter({ order: "smacss" })]))
+            .pipe(shorthand())
+            .pipe(pipe_error_stop({ errorCallback: pipe_error.bind(this) }))
+            .pipe(gulp.dest("css/")) // dump into development folder
+            .pipe($.cleanCss()) // minify for production
+            .pipe(pipe_error_stop({ errorCallback: pipe_error.bind(this) }))
+            .pipe(gulp.dest("dist/css/")) // dump in dist/ folder
+            .pipe(bs1.stream()) );
+});
+
+// check for any unused CSS
+// maybe use command line arguments? [http://stackoverflow.com/a/23038290]
+gulp.task("purify", function() {
+    // get the command line arguments from yargs
+    var remove = cli.r || cli.remove || null;
+    var delete_file = cli.D || cli.del || null;
+
+    // remove pure.css
+    if (remove || delete_file) del(["./css/pure.css"]);
+    if (delete_file) return; // don't run gulp just delete the file.
+
     return gulp
-        .src(
-            [
-                // add any used css library paths here
-                "font-awesome-4.7.0/css/font-awesome.css"
-            ],
-            { cwd: "css/libs/" }
-        )
+        .src("./css/source/styles.css")
+        .pipe(plumber({ errorHandler: pipe_error.bind(this) }))
         .pipe(
-            plumber({
-                errorHandler: function(error) {
-                    // [https://scotch.io/tutorials/prevent-errors-from-crashing-gulp-watch]
-                    // [https://cameronspear.com/blog/how-to-handle-gulp-watch-errors-with-plumber/]
-                    // [http://blog.ibangspacebar.com/handling-errors-with-gulp-watch-and-gulp-plumber/]
-                    notify("Error with `CSSLIBS` task.", true);
-                    this.emit("end");
-                }
+            purify(["./js/app.js", "./index.html"], {
+                info: true,
+                rejected: true
             })
         )
-        .pipe($.concat("libs.css"))
-        .pipe(
-            $.autoprefixer({
-                browsers: autoprefixer_browsers,
-                cascade: false
-            })
-        )
-        .pipe(gulp.dest("css/")) // dump into development folder
-        .pipe($.cleanCss()) // minify for production
-        .pipe(gulp.dest("dist/css/")) // dump in dist/ folder
-        .pipe(bs1.stream());
+        .pipe(gulpif(!remove, rename("pure.css")))
+        .pipe(pipe_error_stop({ errorCallback: pipe_error.bind(this) }))
+        .pipe(gulp.dest("./css/" + (remove ? "source/" : "")));
 });
 
 // build app.js + minify + beautify
@@ -220,21 +295,13 @@ gulp.task("jsapp", function(done) {
             ],
             { cwd: "js/source/" }
         )
-        .pipe(
-            plumber({
-                errorHandler: function(error) {
-                    // [https://scotch.io/tutorials/prevent-errors-from-crashing-gulp-watch]
-                    // [https://cameronspear.com/blog/how-to-handle-gulp-watch-errors-with-plumber/]
-                    // [http://blog.ibangspacebar.com/handling-errors-with-gulp-watch-and-gulp-plumber/]
-                    notify("Error with `JSAPP` task.", true);
-                    this.emit("end");
-                }
-            })
-        )
+        .pipe(plumber({ errorHandler: pipe_error.bind(this) }))
         .pipe($.concat("app.js"))
         .pipe($.jsbeautifier())
+        .pipe(pipe_error_stop({ errorCallback: pipe_error.bind(this) }))
         .pipe(gulp.dest("js/")) // dump into development folder
         .pipe($.uglify()) // minify for production
+        .pipe(pipe_error_stop({ errorCallback: pipe_error.bind(this) }))
         .pipe(gulp.dest("dist/js/")) // dump in dist/ folder
         .pipe(bs1.stream());
 });
@@ -251,21 +318,13 @@ gulp.task("jslibs", function(done) {
             ],
             { cwd: "js/libs/" }
         )
-        .pipe(
-            plumber({
-                errorHandler: function(error) {
-                    // [https://scotch.io/tutorials/prevent-errors-from-crashing-gulp-watch]
-                    // [https://cameronspear.com/blog/how-to-handle-gulp-watch-errors-with-plumber/]
-                    // [http://blog.ibangspacebar.com/handling-errors-with-gulp-watch-and-gulp-plumber/]
-                    notify("Error with `JSLIBS` task.", true);
-                    this.emit("end");
-                }
-            })
-        )
+        .pipe(plumber({ errorHandler: pipe_error.bind(this) }))
         .pipe($.concat("libs.js"))
         .pipe($.jsbeautifier())
+        .pipe(pipe_error_stop({ errorCallback: pipe_error.bind(this) }))
         .pipe(gulp.dest("js/")) // dump into development folder
         .pipe($.uglify()) // minify for production
+        .pipe(pipe_error_stop({ errorCallback: pipe_error.bind(this) }))
         .pipe(gulp.dest("dist/js/")) // dump in dist/ folder
         .pipe(bs1.stream());
 });
@@ -274,17 +333,8 @@ gulp.task("jslibs", function(done) {
 gulp.task("csslibsfolder", ["clean-csslibs"], function(done) {
     return gulp
         .src(["css/libs/**"])
-        .pipe(
-            plumber({
-                errorHandler: function(error) {
-                    // [https://scotch.io/tutorials/prevent-errors-from-crashing-gulp-watch]
-                    // [https://cameronspear.com/blog/how-to-handle-gulp-watch-errors-with-plumber/]
-                    // [http://blog.ibangspacebar.com/handling-errors-with-gulp-watch-and-gulp-plumber/]
-                    notify("Error with `CSSLIBSFOLDER` task.", true);
-                    this.emit("end");
-                }
-            })
-        )
+        .pipe(plumber({ errorHandler: pipe_error.bind(this) }))
+        .pipe(pipe_error_stop({ errorCallback: pipe_error.bind(this) }))
         .pipe(gulp.dest("dist/css/libs/")) // dump in dist/ folder
         .pipe(bs1.stream());
 });
@@ -293,17 +343,8 @@ gulp.task("csslibsfolder", ["clean-csslibs"], function(done) {
 gulp.task("jslibsfolder", ["clean-jslibs"], function(done) {
     return gulp
         .src(["js/libs/**"])
-        .pipe(
-            plumber({
-                errorHandler: function(error) {
-                    // [https://scotch.io/tutorials/prevent-errors-from-crashing-gulp-watch]
-                    // [https://cameronspear.com/blog/how-to-handle-gulp-watch-errors-with-plumber/]
-                    // [http://blog.ibangspacebar.com/handling-errors-with-gulp-watch-and-gulp-plumber/]
-                    notify("Error with `JSLIBSFOLDER` task.", true);
-                    this.emit("end");
-                }
-            })
-        )
+        .pipe(plumber({ errorHandler: pipe_error.bind(this) }))
+        .pipe(pipe_error_stop({ errorCallback: pipe_error.bind(this) }))
         .pipe(gulp.dest("dist/js/libs/")) // dump in dist/ folder
         .pipe(bs1.stream());
 });
@@ -313,17 +354,8 @@ gulp.task("img", function(done) {
     // deed to copy hidden files/folders? [https://github.com/klaascuvelier/gulp-copy/issues/5]
     return gulp
         .src("img/**/*")
-        .pipe(
-            plumber({
-                errorHandler: function(error) {
-                    // [https://scotch.io/tutorials/prevent-errors-from-crashing-gulp-watch]
-                    // [https://cameronspear.com/blog/how-to-handle-gulp-watch-errors-with-plumber/]
-                    // [http://blog.ibangspacebar.com/handling-errors-with-gulp-watch-and-gulp-plumber/]
-                    notify("Error with `IMG` task.", true);
-                    this.emit("end");
-                }
-            })
-        )
+        .pipe(plumber({ errorHandler: pipe_error.bind(this) }))
+        .pipe(pipe_error_stop({ errorCallback: pipe_error.bind(this) }))
         .pipe(gulp.dest("dist/img/")) // dump in dist/ folder
         .pipe(bs1.stream());
 });
@@ -346,21 +378,31 @@ gulp.task("readme", function() {
 // watch changes to files
 gulp.task("watch", function(done) {
     // start browser-syncs
-    bs1.init({
-        browser: browsers,
-        proxy: uri(),
-        port: port1,
-        ui: { port: port1 + 1 },
-        notify: false
-    });
-    bs2.init({
-        browser: browsers,
-        proxy: uri("markdown/preview/README.html"),
-        port: port2,
-        ui: { port: port2 + 1 },
-        notify: false,
-        open: false
-    });
+    bs1.init(
+        {
+            browser: browsers,
+            proxy: uri(),
+            port: ports.bs1.app,
+            ui: { port: ports.bs1.ui },
+            notify: false
+        },
+        function() {
+            // notify("BS1 Server Created.");
+        }
+    );
+    bs2.init(
+        {
+            browser: browsers,
+            proxy: uri("markdown/preview/README.html"),
+            port: ports.bs2.app,
+            ui: { port: ports.bs2.ui },
+            notify: false,
+            open: false
+        },
+        function() {
+            // notify("BS2 Server Created.");
+        }
+    );
 
     // gulp.watch options
     var options = { /*debounceDelay: 2000,*/ cwd: "./" };
@@ -372,17 +414,17 @@ gulp.task("watch", function(done) {
             return sequence("html");
         }
     );
-    gulp.watch(["libs/**/*", "source/*.css"], { cwd: "css/" }, function() {
+    gulp.watch(["libs/**/*.css", "source/*.css"], { cwd: "css/" }, function() {
         return sequence("cssapp", "csslibs", "csslibsfolder");
     });
     gulp.watch(
-        ["libs/**/*", "source/*.js", "source/modules/*.js"],
+        ["libs/**/*.js", "source/*.js", "source/modules/*.js"],
         { cwd: "js/" },
         function() {
             return sequence("jsapp", "jslibs", "jslibsfolder");
         }
     );
-    gulp.watch(["img/**"], options, function() {
+    gulp.watch(["img/**/*.{jpg,png,gif}"], options, function() {
         return sequence("img");
     });
     gulp.watch(["README.md"], options, function() {
@@ -395,16 +437,25 @@ gulp.task("watch", function(done) {
 // command line gulp task names
 
 // open index.html in browser
-gulp.task("open-index", function(done) {
-    open(uri(null, port1), {
-        app: browsers
-    }); // .then(function() {});
-    done();
-});
+gulp.task("open", function(done) {
+    // get the command line arguments from yargs
+    var filename = cli.f || cli.file || "index.html",
+        port = cli.p || cli.port || 3000;
 
-// open README.md HTML preview in browser
-gulp.task("open-md", function(done) {
-    open(uri("markdown/preview/README.html", port2), {
+    // return if argument(s) missing
+    if (!filename || !port) {
+        if (!filename) console.log("Missing -f/--file <String> parameter.");
+        if (!port) console.log("Missing -p/--port <Number> parameter.");
+        done();
+        return;
+    }
+
+    // reset the filename
+    if (filename === "index.html") filename = null;
+    if (filename === "readme.md") filename = "markdown/preview/README.html";
+
+    // open file in the browser
+    open(uri(filename, port), {
         app: browsers
     }); // .then(function() {});
     done();
@@ -439,17 +490,8 @@ gulp.task("reset", function(done) {
                 .src(["./source/**"], {
                     dot: true // copy dot files as well
                 })
-                .pipe(
-                    plumber({
-                        errorHandler: function(error) {
-                            // [https://scotch.io/tutorials/prevent-errors-from-crashing-gulp-watch]
-                            // [https://cameronspear.com/blog/how-to-handle-gulp-watch-errors-with-plumber/]
-                            // [http://blog.ibangspacebar.com/handling-errors-with-gulp-watch-and-gulp-plumber/]
-                            notify("Error with `RESET` task.", true);
-                            this.emit("end");
-                        }
-                    })
-                )
+                .pipe(plumber({ errorHandler: pipe_error.bind(this) }))
+                .pipe(pipe_error_stop({ errorCallback: pipe_error.bind(this) }))
                 .pipe(gulp.dest("./"));
         })
         .then(function() {
@@ -491,8 +533,31 @@ gulp.task("build", ["clean-dist"], function(done) {
 
 // gulps default task is set to rum the build + watch + browser-sync
 gulp.task("default", function(done) {
-    return sequence("build", function() {
-        sequence("watch");
-        done();
+    return find_free_port(3000, 3100, "127.0.0.1", 4, function(
+        err,
+        p1,
+        p2,
+        p3,
+        p4
+    ) {
+        // set the ports
+        ports.bs1.app = p1;
+        ports.bs1.ui = p2;
+        ports.bs2.app = p3;
+        ports.bs2.ui = p4;
+
+        // after getting the free ports, finally run the build task
+        return sequence("build", function() {
+            sequence("watch");
+            done();
+        });
     });
 });
+
+// Error Handling
+// [https://scotch.io/tutorials/prevent-errors-from-crashing-gulp-watch]
+// [https://cameronspear.com/blog/how-to-handle-gulp-watch-errors-with-plumber/]
+// [http://blog.ibangspacebar.com/handling-errors-with-gulp-watch-and-gulp-plumber/]
+// [https://github.com/rbalicki2/pipe-error-stop]
+// [https://github.com/spalger/gulp-jshint/issues/91]
+// [https://artandlogic.com/2014/05/error-handling-in-gulp/]
