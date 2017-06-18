@@ -9,7 +9,9 @@ body {
     margin: 0;
 }
 
+
 /* [header.styles] */
+
 .header-wrapper {
     display: flex;
     width: 100%;
@@ -25,14 +27,17 @@ body {
     padding: 0 9px 0 7px;
     cursor: default;
     text-align: center;
-    color: #fff;  /* leaf  */
+    color: #fff;
+    /* leaf  */
     border-radius: 40px 100px 0 100px;
     background: #699935;
     justify-content: center;
     align-items: center;
 }
 
+
 /* [header.nav.styles] */
+
 .nav-wrapper {
     display: flex;
     flex-flow: row nowrap;
@@ -85,7 +90,9 @@ body {
     color: #cbcbcb;
 }
 
+
 /* [popup.styles] */
+
 .popup {
     position: absolute;
     z-index: 1;
@@ -122,14 +129,18 @@ body {
     margin-top: 7px;
 }
 
+
 /* [ul.styles] */
+
 .ul-reset {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
+
 /* [main.styles] */
+
 .main-content-wrapper {
     display: flex;
     margin: 50px 0;
@@ -139,6 +150,32 @@ body {
     flex-flow: column nowrap;
 }
 
+.emojione-attribution-wrapper {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+
+.attribution-message-wrapper {
+    flex: 0 1 auto;
+    align-self: center;
+}
+
+.attribution-message-text {
+    color: #666;
+}
+
+.attribution-link {
+    color: #4280eb;
+    text-decoration: none;
+}
+
+.attribution-link:hover {
+    text-decoration: underline;
+}
+
 .projects-wrapper {
     display: flex;
     width: 100%;
@@ -146,7 +183,9 @@ body {
     justify-content: space-between;
 }
 
+
 /* [messages.styles] */
+
 .message-title {
     font-size: 35px;
     font-weight: 400;
@@ -158,7 +197,8 @@ body {
     margin: 0 0 20px;
     padding: 0;
     word-wrap: break-word;
-    hyphens: auto;  /* [hyphen,word-break](https://justmarkup.com/log/2015/07/dealing-with-long-words-in-css/) */
+    hyphens: auto;
+    /* [hyphen,word-break](https://justmarkup.com/log/2015/07/dealing-with-long-words-in-css/) */
     overflow-wrap: break-word;
 }
 
@@ -168,7 +208,9 @@ body {
     background: #f6f6f6;
 }
 
+
 /* [project.styles] */
+
 .project-item-wrapper {
     width: calc(50% - 5px);
     padding: 20px;
@@ -228,7 +270,9 @@ body {
     font-size: 14px;
 }
 
+
 /* [footer.styles] */
+
 .footer-wrapper {
     display: flex;
     width: 100%;
@@ -268,7 +312,9 @@ body {
     color: #4280eb;
 }
 
+
 /* [position.styles] */
+
 .position-center {
     width: 900px;
     margin: 0 auto;
@@ -280,16 +326,20 @@ body {
     text-decoration: inherit;
 }
 
-/* [helper.styles] */
-.unselectable {
 
+/* [helper.styles] */
+
+.unselectable {
     /* [source::credit](http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-highlighting) */
     user-select: none;
 }
 
+
 /*.undraggable {*/
 
+
 /* [source::credit](http://stackoverflow.com/questions/7439042/css-js-to-prevent-dragging-of-ghost-image) */
+
 
 /*}*/
 
@@ -302,44 +352,46 @@ body {
     flex-flow: row nowrap;
 }
 
+
 /* prevents the flex child items from collapsing on themselves  */
+
 .header-wrapper,
 .footer-wrapper {
-
     /* [https://philipwalton.com/articles/normalizing-cross-browser-flexbox-bugs/]
        [https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/]
      */
     flex-shrink: 0;
 }
 
+
 /* [animations.styles] */
+
 @-webkit-keyframes footer-animate {
     0% {
         background: #ffe6b3;
     }
-
     50% {
         background: #f2f2f2;
     }
-
 }
 
 @keyframes footer-animate {
     0% {
         background: #ffe6b3;
     }
-
     50% {
         background: #f2f2f2;
     }
-
 }
 
+
 /* [animation resources] */
+
 
 /* [source::api](http://www.w3schools.com/cssref/css3_pr_animation.asp)
    [source](http://stackoverflow.com/questions/33835096/css-to-pan-background-image-back-and-forth)
 */
+
 .footer-animate {
     animation-name: footer-animate;
     animation-duration: 2s;
@@ -352,12 +404,10 @@ body {
         transform: translateY(-15px);
         opacity: 0;
     }
-
     100% {
         transform: translateY(0);
         opacity: 1;
     }
-
 }
 
 @keyframes animate-fadein {
@@ -365,12 +415,10 @@ body {
         transform: translateY(-15px);
         opacity: 0;
     }
-
     100% {
         transform: translateY(0);
         opacity: 1;
     }
-
 }
 
 .animate-fadein {
@@ -380,122 +428,103 @@ body {
     animation-iteration-count: 1;
 }
 
+
 /* [media_queries.styles] */
+
 @media screen and (max-width:950px) {
     .position-center {
         width: 100%;
     }
-
     .message-title {
         font-size: 35px;
     }
-
     .message-text {
         font-size: 22px;
     }
-
 }
 
 @media screen and (min-width:811px) {
-
     /* [http://stackoverflow.com/a/29771071]
       selects the last child when odd or the last 2 children when there is an event amount of children
       */
     .project-item-wrapper:last-child,
-    .project-item-wrapper:nth-last-of-type(-n+2):not(:nth-child(even)) {
+    .project-item-wrapper:nth-last-of-type(-n+2):not(: nth-child(even)) {
         margin-bottom: 0;
     }
-
 }
 
 @media screen and (max-width:810px) {
     .project-item-wrapper {
         width: 100%;
     }
-
 }
 
 @media screen and (max-width:768px) {
     .project-item-wrapper {
         width: 100%;
     }
-
     .header-wrapper {
         margin-top: 0;
     }
-
     .message-title {
         font-size: 28px;
     }
-
     .message-text {
         font-size: 20px;
     }
-
 }
 
 @media screen and (max-width:680px) {
     .project-name {
         font-size: 14px;
     }
-
 }
 
 @media screen and (max-width:625px) {
     .responsive-text-hideable {
         display: none;
     }
-
 }
 
 @media screen and (max-width:500px) {
     .position-center {
         padding: 15px;
     }
-
     .nav-expanded-wrapper {
         display: none;
     }
-
     .nav-compact-wrapper {
         display: block;
     }
-
 }
 
 @media screen and (min-width:500px) {
     .hide500plus {
         display: none;
     }
-
 }
 
 @media screen and (max-width:425px) {
     .message-title {
         font-size: 27px;
     }
-
 }
 
 @media screen and (max-width:375px) {
     .message-title {
         font-size: 25px;
     }
-
 }
 
 @media screen and (max-width:320px) {
     .message-title {
         font-size: 23px;
     }
-
     .message-text {
         font-size: 18px;
         padding: 0;
     }
-
     .message-text-workcallout {
         padding: 20px;
     }
-
 }
