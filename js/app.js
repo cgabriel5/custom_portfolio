@@ -1,7 +1,6 @@
 // IIFE start
 (function(window) {
     "use strict";
-
     (function() {
         // add to global scope for ease of use
         // use global app var or create it if not present
@@ -14,7 +13,6 @@
                 complete: [],
                 interactive: []
             };
-
         // add a module to load
         app.module = function(module_name, fn, mode) {
             // determine what array the module needs to be added to
@@ -22,7 +20,6 @@
             // add the module to the queue
             queue[type].push([module_name, fn]);
         };
-
         // app module invoker
         var invoke = function(mode) {
             // get the queued array
@@ -33,7 +30,6 @@
             // get the first module
             load(modules, counter[mode], mode);
         };
-
         var load = function(modules, count, mode) {
             // get the current module + its information
             var module = modules[count];
@@ -54,7 +50,6 @@
                 load(modules, counter[mode], mode);
             })();
         };
-
         // cleanup the app variable
         var cleanup = function() {
             // remove unneeded properties once
@@ -62,7 +57,6 @@
             delete app.module;
             delete app.invoke;
         };
-
         // https://developer.mozilla.org/en-US/docs/Web/Events/readystatechange
         // the readystatechange event is fired when the readyState attribute of a
         // document has changed
@@ -77,104 +71,84 @@
             // **Note: complete    === window.addEventListener("load", function() {...
             // [DOMContentLoaded](https://developer.mozilla.org/en-US/docs/Web/Events/DOMContentLoaded)
             // [load](https://developer.mozilla.org/en-US/docs/Web/Events/load)
-
             // document loaded and parsed. however, still loading subresources
             // user is able to interact with page.
             if (document.readyState === "interactive") {
                 // invoke the modules set to mode interactive
                 invoke("interactive");
             }
-
             // all resources have loaded (document + subresources)
             if (document.readyState === "complete") {
                 // invoke the modules set to mode complete
                 invoke("complete");
-
                 // cleanup app var once everything is loaded
                 cleanup();
             }
-
             // good explanation with images:
             // https://varvy.com/performance/document-ready-state.html
         };
     })();
-
-    app.module(
-        "libs",
-        function(modules, name) {
-            // init FastClickJS
-            if ("addEventListener" in document) {
-                FastClick.attach(document.body);
-            }
-        },
-        "interactive"
-    );
-
+    app.module("libs", function(modules, name) {
+        // init FastClickJS
+        if ("addEventListener" in document) {
+            FastClick.attach(document.body);
+        }
+    }, "interactive");
     app.module("globals", function(modules, name) {
         // define vars
-
         /**
          * @description [Array containing project objects.]
          * @type {Array}
          */
         var projects = [{
-                title: "InteractionJS (events)",
-                dates: "2017-Present",
-                description: "Small library for event handling.",
-                url: "https://github.com/cgabriel5/interactionjs",
-                langs: ["JavaScript"]
-            },
-            {
-                title: "XHR-Wrapper (httpjs)",
-                dates: "2017-Present",
-                description: "A lightweight JavaScript XHR wrapper.",
-                url: "https://github.com/cgabriel5/httpjs",
-                langs: ["JavaScript"]
-            },
-            {
-                title: "MonitorJS",
-                dates: "2017-Present",
-                description: "Small library that monitors an object.",
-                url: "https://github.com/cgabriel5/monitorjs",
-                langs: ["JavaScript"]
-            },
-            {
-                title: "CSS-Syntax-Highlighter",
-                dates: "2016-Present",
-                description: "A CSS syntax highlighter.",
-                url: "https://github.com/cgabriel5/css-syntax-highlighter",
-                langs: ["JavaScript"]
-            },
-            {
-                title: "CSS-Dupe-Finder",
-                dates: "2016-Present",
-                description: "Finds duplicate declarations within CSS code blocks.",
-                url: "https://github.com/cgabriel5/css-dupe-finder",
-                langs: ["JavaScript"]
-            },
-            {
-                title: "Password-Generator",
-                dates: "2015-Present",
-                description: "A simple client-side password generator made in JavaScript.",
-                url: "https://github.com/cgabriel5/password-generator",
-                langs: ["HTML", "CSS", "JavaScript"]
-            },
-            {
-                title: "FunnelJS",
-                dates: "2015-Present",
-                description: "Simple, standalone, lightweight JavaScript selector engine.",
-                url: "https://github.com/cgabriel5/funneljs",
-                langs: ["JavaScript"]
-            },
-            {
-                title: "URL-Parser",
-                dates: "2015-Present",
-                description: "A JavaScript URL parser. Parses properly formatted URLs.",
-                url: "https://github.com/cgabriel5/url-parser",
-                langs: ["JavaScript"]
-            }
-        ];
-
+            title: "InteractionJS (events)",
+            dates: "2017-Present",
+            description: "Small library for event handling.",
+            url: "https://github.com/cgabriel5/interactionjs",
+            langs: ["JavaScript"]
+        }, {
+            title: "XHR-Wrapper (httpjs)",
+            dates: "2017-Present",
+            description: "A lightweight JavaScript XHR wrapper.",
+            url: "https://github.com/cgabriel5/httpjs",
+            langs: ["JavaScript"]
+        }, {
+            title: "MonitorJS",
+            dates: "2017-Present",
+            description: "Small library that monitors an object.",
+            url: "https://github.com/cgabriel5/monitorjs",
+            langs: ["JavaScript"]
+        }, {
+            title: "CSS-Syntax-Highlighter",
+            dates: "2016-Present",
+            description: "A CSS syntax highlighter.",
+            url: "https://github.com/cgabriel5/css-syntax-highlighter",
+            langs: ["JavaScript"]
+        }, {
+            title: "CSS-Dupe-Finder",
+            dates: "2016-Present",
+            description: "Finds duplicate declarations within CSS code blocks.",
+            url: "https://github.com/cgabriel5/css-dupe-finder",
+            langs: ["JavaScript"]
+        }, {
+            title: "Password-Generator",
+            dates: "2015-Present",
+            description: "A simple client-side password generator made in JavaScript.",
+            url: "https://github.com/cgabriel5/password-generator",
+            langs: ["HTML", "CSS", "JavaScript"]
+        }, {
+            title: "FunnelJS",
+            dates: "2015-Present",
+            description: "Simple, standalone, lightweight JavaScript selector engine.",
+            url: "https://github.com/cgabriel5/funneljs",
+            langs: ["JavaScript"]
+        }, {
+            title: "URL-Parser",
+            dates: "2015-Present",
+            description: "A JavaScript URL parser. Parses properly formatted URLs.",
+            url: "https://github.com/cgabriel5/url-parser",
+            langs: ["JavaScript"]
+        }];
         /**
          * @description [Project HTML templates.]
          * @type {Object}
@@ -183,7 +157,6 @@
             project: '<div class="project-item-wrapper"><div class="project-title"><a href="{{url}}" target="_blank" class="project-link">{{title}}</a></div><div class="project-description">{{description}}</div><div class="project-languages-wrapper">{{langs}}</div></div>',
             language: '<div class="lang-wrapper"><div class="lang-color-dot" style="background: {{color}}"></div><span class="lang-color-text">{{lang}}</span></div>'
         };
-
         /**
          * @description [GitHub language colors.]
          * @type {Object}
@@ -535,14 +508,12 @@
             Zephir: "#118f9e",
             Zimpl: null
         };
-
         // export to access in other modules
         this[name]["last_open_popup"] = null;
         this[name]["projects"] = projects;
         this[name]["templates"] = templates;
         this[name]["colors"] = colors;
     });
-
     app.module("utils", function(modules, name) {
         /**
          * @description [Turns provided array like object into a true array.]
@@ -553,7 +524,6 @@
         function to_real_array(array_like_object) {
             return Array.prototype.slice.call(array_like_object);
         }
-
         /**
          * @description [Determines which event the users browser supports and returns it.]
          * @return {String} [The browser dependant event to listen to.]
@@ -574,7 +544,6 @@
                 }
             }
         }
-
         /**
          * @description [Creates the targets path (target elements parents).]
          * @param  {EventObject} event   [The browsers EventObject]
@@ -596,7 +565,6 @@
             // finally return the path!
             return parents;
         }
-
         /**
          * @description [Checks whether the documents vertical scrollbar is visible.]
          * @return {Boolean}
@@ -605,7 +573,6 @@
         function is_vertical_scrollbar_visible() {
             return document.body.scrollHeight > window.innerHeight;
         }
-
         /**
          * @description [Formats template with provided data object.]
          * @param  {String} template [The template to use.]
@@ -618,7 +585,6 @@
                 return data[match] ? data[match] : match;
             });
         }
-
         // export to access in other modules
         this[name].to_real_array = to_real_array;
         this[name].which_animation_event = which_animation_event;
@@ -626,13 +592,11 @@
         this[name].is_vertical_scrollbar_visible = is_vertical_scrollbar_visible;
         this[name].format = format;
     });
-
     app.module("$$", function(modules, name) {
         // grab module(s)
         var utils = modules.utils;
         // get needed functions/data
         var to_real_array = utils.to_real_array;
-
         // local module vars
         var d = document,
             $ = function(id) {
@@ -641,12 +605,9 @@
             $class = function(class_name) {
                 return d.getElementsByClassName(class_name);
             };
-
         // export to access in other modules
         this[name]["portfolio_wrapper"] = $("portfolio-wrapper");
-        this[name]["shortnames_elements"] = to_real_array(
-            $class("emoticon-shortname")
-        );
+        this[name]["shortnames_elements"] = to_real_array($class("emoticon-shortname"));
         this[name]["nav_contact"] = $("nav-contact");
         this[name]["nav_popup_contact"] = $("nav-popup-contact");
         this[name]["footer"] = $class("footer-wrapper")[0];
@@ -655,7 +616,6 @@
         this[name]["menu_popup"] = $("popup-menu-wrapper");
         this[name]["projects_wrapper"] = $("projects-wrapper");
     });
-
     app.module("core", function(modules, name) {
         // grab module(s)
         var $$ = modules.$$,
@@ -671,7 +631,6 @@
             is_vertical_scrollbar_visible = utils.is_vertical_scrollbar_visible,
             to_real_array = utils.to_real_array,
             format = utils.format;
-
         /**
          * @description [Shows the contact tab. Depends on the is_vertical_scrollbar_visible() function.]
          * @return {Undefined}  [Nothing is returned.]
@@ -685,20 +644,17 @@
                 nav_popup_contact.classList.add("hidden");
             }
         }
-
         /**
          * @description [Resets the main navigation tabs. It removes the nav-current class.]
          * @return {Undefined}  [Nothing is returned.]
          */
         function reset_navigation() {
             // reset active nav-item
-            to_real_array(
-                document.getElementsByClassName("nav-item")
-            ).forEach(function(nav_item) {
-                nav_item.classList.remove("nav-current");
-            });
+            to_real_array(document.getElementsByClassName("nav-item"))
+                .forEach(function(nav_item) {
+                    nav_item.classList.remove("nav-current");
+                });
         }
-
         /**
          * @description [Turns emoticons strings into emoticon image elements.]
          * @return {Undefined}  [Nothing is returned.]
@@ -714,7 +670,6 @@
                 element.innerHTML = emoticon.replace("//cdn", "https://cdn");
             });
         }
-
         /**
          * @description [Hides the currently/last opened popup.]
          * @return {Undefined}  [Nothing is returned.]
@@ -723,7 +678,6 @@
             var last_open_popup = modules.globals.last_open_popup;
             if (last_open_popup) last_open_popup.classList.add("hidden");
         }
-
         /**
          * @description [Shows the about me section wile hides the works section.]
          * @return {Undefined}  [Nothing is returned.]
@@ -734,7 +688,6 @@
             // show the projects section
             works_section.classList.add("hidden");
         }
-
         /**
          * @description [Shows the works wile hides the about me section.]
          * @return {Undefined}  [Nothing is returned.]
@@ -745,7 +698,6 @@
             // show the projects section
             works_section.classList.remove("hidden");
         }
-
         /**
          * @description [Open a new tab linking to the resume page.]
          * @return {Undefined}  [Nothing is returned.]
@@ -754,7 +706,6 @@
             // open a new tab to the resume page
             window.open("https://cgabriel5.github.io/resume/");
         }
-
         /**
          * @description [Parse provided delegation data.]
          * @param {EventTargetElement} target [Browser provided clicked target element.]
@@ -771,8 +722,10 @@
                     preventDefault: false
                 };
             }
-            var parts = delegation_data.trim().split(";");
-            var actions = parts[0].trim().split(",");
+            var parts = delegation_data.trim()
+                .split(";");
+            var actions = parts[0].trim()
+                .split(",");
             // remove the actions
             parts.shift();
             return {
@@ -781,7 +734,6 @@
                 preventDefault: Boolean(-~parts.indexOf("pd"))
             };
         }
-
         /**
          * @description [Adds the nav-current class to the clicked element tab.]
          * @param  {HTMLElement} target_element [The target element that was clicked on.]
@@ -789,11 +741,9 @@
          */
         function highlight_tab(target_element) {
             // highlight clicked nav-item
-            document
-                .getElementById(target_element.getAttribute("data-syncid"))
+            document.getElementById(target_element.getAttribute("data-syncid"))
                 .classList.add("nav-current");
         }
-
         /**
          * @description [Builds the HTML languages for each project.]
          * @param  {Array} langs [The list of languages used for the project.]
@@ -820,7 +770,6 @@
             }
             return parts.join("");
         }
-
         /**
          * @description [Builds the projects using the globals.projects array and then injects them into the page.]
          * @return {Undefined}  [Nothing is returned.]
@@ -847,7 +796,6 @@
             // inject the fragment into the DOM
             projects_wrapper.innerHTML = parts.join("");
         }
-
         // export to access in other modules
         this[name].show_contact_nav = show_contact_nav;
         this[name].reset_navigation = reset_navigation;
@@ -860,7 +808,6 @@
         this[name].highlight_tab = highlight_tab;
         this[name].build_projects = build_projects;
     });
-
     app.module("events", function(modules, name) {
         // grab module(s)
         var $$ = modules.$$,
@@ -882,7 +829,6 @@
             show_works_section = core.show_works_section,
             show_resume = core.show_resume,
             highlight_tab = core.highlight_tab;
-
         // local module vars
         var delegation_actions = {
             /**
@@ -995,13 +941,9 @@
              * @return {Undefined}  [Nothing is returned.]
              */
             nav_popup_contact: function(target) {
-                delegation_actions.nav_contact.apply(
-                    null,
-                    to_real_array(arguments)
-                );
+                delegation_actions.nav_contact.apply(null, to_real_array(arguments));
             }
         };
-
         // Single app click event handler. (Uses delegation.)
         document.addEventListener("click", function(e) {
             // hide the last open popup
@@ -1031,19 +973,16 @@
                 if (delegation_data.stop) return;
             }
         });
-
         // show the contact tab when the BODY's vertical scrollbar is displayed
         window.addEventListener("resize", function(e) {
             show_contact_nav();
         });
-
         // listen to when the footer transition ends to remove the animation class
         document.addEventListener(which_animation_event(), function() {
             // remove the animation class
             footer.classList.remove("footer-animate");
         });
     });
-
     app.module("main", function(modules, name) {
         // grab modules
         var core = modules.core,
@@ -1054,19 +993,14 @@
             show_contact_nav = core.show_contact_nav,
             shortnames_2_emoticons = core.shortnames_2_emoticons,
             build_projects = core.build_projects;
-
         // show the about me section on loaded page
         show_aboutme_section();
-
         // check if the contact element button should be displayed this is dependant on the presence of the BODY's vertical scrollbar
         show_contact_nav();
-
         // convert the emoticon shortnames to images :)
         shortnames_2_emoticons();
-
         // build the projects
         build_projects();
     });
-
     // IIFE end
 })(window);
