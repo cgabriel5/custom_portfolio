@@ -140,10 +140,7 @@ gulp.task("purify", function(done) {
     // remove pure.css
     if (remove || delete_file) del(["./css/pure.css"]);
     // don't run gulp just delete the file.
-    if (delete_file) {
-        return;
-        done();
-    }
+    if (delete_file) return done();
     pump([gulp.src("./css/source/styles.css"),
         purify(["./js/app.js", "./index.html"], {
             info: true,
@@ -163,14 +160,31 @@ gulp.task("jsapp", function(done) {
         concat("app.js"),
         beautify(beautify_options),
         gulp.dest("js/"),
-        gulpif(is_library, rename("lib.js")),
-        gulpif(is_library, gulp.dest("lib/")),
-        gulpif(is_library, rename("app.js")),
         uglify(),
         gulp.dest("dist/js/"),
+        bs1.stream()
+    ], done);
+});
+// build lib/lib.js + lib/lib.min.js
+gulp.task("jslibsource", function(done) {
+    // check if application is a library
+    var is_library = __type__ === "library";
+    if (!is_library) return done(); // return on apps of type "webapp"
+    // remove test files from files
+    var files_array = paths.flavor.jsapp[__type__].filter(function(filename) {
+        return !(/^test/i)
+            .test(filename);
+    });
+    pump([gulp.src(files_array, {
+            cwd: "js/source/"
+        }),
+        concat("app.js"),
+        beautify(beautify_options),
+        gulpif(is_library, rename("lib.js")),
+        gulpif(is_library, gulp.dest("lib/")),
+        uglify(),
         gulpif(is_library, rename("lib.min.js")),
-        gulpif(is_library, gulp.dest("lib")),
-        gulpif(is_library, rename("app.js")),
+        gulpif(is_library, gulp.dest("lib/")),
         bs1.stream()
     ], done);
 });
@@ -257,7 +271,7 @@ gulp.task("watch", function(done) {
     gulp.watch(path.js, {
         cwd: "js/"
     }, function() {
-        return sequence("jsapp", "jslibs", "jslibsfolder");
+        return sequence("jsapp", "jslibsource", "jslibs", "jslibsfolder");
     });
     gulp.watch(path.img, {
         cwd: "./"
