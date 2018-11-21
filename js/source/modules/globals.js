@@ -7,6 +7,41 @@ app.module("globals", function(modules, name) {
      */
     var projects = [
         {
+            title: "devdocs",
+            dates: "2018-Present",
+            description: "A static website documentation generator.",
+            url: "https://github.com/cgabriel5/devdocs",
+            langs: ["JavaScript"]
+        },
+        {
+            title: "wapplr-webpack-gulp",
+            dates: "2018-Present",
+            description: "A web development boilerplate and tooling solution that uses webpack and Gulp.",
+            url: "https://github.com/cgabriel5/wapplr-webpack-gulp",
+            langs: ["JavaScript"]
+        },
+        {
+            title: "wapplr-webpack-simple",
+            dates: "2018-Present",
+            description: "A web development webpack starter.",
+            url: "https://github.com/cgabriel5/wapplr-webpack-simple",
+            langs: ["JavaScript", "CSS"]
+        },
+        {
+            title: "wapplr",
+            dates: "2017-Present",
+            description: "A web development boilerplate and tooling solution.",
+            url: "https://github.com/cgabriel5/wapplr",
+            langs: ["JavaScript"]
+        },
+        {
+            title: "random-string",
+            dates: "2017-Present",
+            description: "JavaScript library that creates random strings.",
+            url: "https://github.com/cgabriel5/random-string",
+            langs: ["JavaScript"]
+        },
+        {
             title: "InteractionJS (events)",
             dates: "2017-Present",
             description: "Small library for event handling.",
