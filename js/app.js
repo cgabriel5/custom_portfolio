@@ -101,6 +101,36 @@
          * @type {Array}
          */
         var projects = [{
+            title: "devdocs",
+            dates: "2018-Present",
+            description: "A static website documentation generator.",
+            url: "https://github.com/cgabriel5/devdocs",
+            langs: ["JavaScript"]
+        }, {
+            title: "wapplr-webpack-gulp",
+            dates: "2018-Present",
+            description: "A web development boilerplate and tooling solution that uses webpack and Gulp.",
+            url: "https://github.com/cgabriel5/wapplr-webpack-gulp",
+            langs: ["JavaScript"]
+        }, {
+            title: "wapplr-webpack-simple",
+            dates: "2018-Present",
+            description: "A web development webpack starter.",
+            url: "https://github.com/cgabriel5/wapplr-webpack-simple",
+            langs: ["JavaScript", "CSS"]
+        }, {
+            title: "wapplr",
+            dates: "2017-Present",
+            description: "A web development boilerplate and tooling solution.",
+            url: "https://github.com/cgabriel5/wapplr",
+            langs: ["JavaScript"]
+        }, {
+            title: "random-string",
+            dates: "2017-Present",
+            description: "JavaScript library that creates random strings.",
+            url: "https://github.com/cgabriel5/random-string",
+            langs: ["JavaScript"]
+        }, {
             title: "InteractionJS (events)",
             dates: "2017-Present",
             description: "Small library for event handling.",
@@ -615,6 +645,7 @@
         this[name]["works_section"] = $("section-works-wrapper");
         this[name]["menu_popup"] = $("popup-menu-wrapper");
         this[name]["projects_wrapper"] = $("projects-wrapper");
+        this[name]["emojione-attribution-wrapper"] = $("emojione-attribution-wrapper");
     });
     app.module("core", function(modules, name) {
         // grab module(s)
@@ -628,6 +659,7 @@
             aboutme_section = $$.aboutme_section,
             works_section = $$.works_section,
             projects_wrapper = $$.projects_wrapper,
+            attribution = $$["emojione-attribution-wrapper"],
             is_vertical_scrollbar_visible = utils.is_vertical_scrollbar_visible,
             to_real_array = utils.to_real_array,
             format = utils.format;
@@ -705,6 +737,18 @@
         function show_resume() {
             // open a new tab to the resume page
             window.open("https://cgabriel5.github.io/resume/");
+        }
+        /**
+         * @description [Show the emoji attribution.]
+         * @return {Undefined} [Nothing is returned.]
+         */
+        function show_attribution() {
+            // hide the element.
+            attribution.classList.add("hidden");
+            // show the element.
+            setTimeout(function() {
+                attribution.classList.remove("hidden");
+            }, 0);
         }
         /**
          * @description [Parse provided delegation data.]
@@ -804,6 +848,7 @@
         this[name].show_aboutme_section = show_aboutme_section;
         this[name].show_works_section = show_works_section;
         this[name].show_resume = show_resume;
+        this[name].show_attribution = show_attribution;
         this[name].parse_delegation_data = parse_delegation_data;
         this[name].highlight_tab = highlight_tab;
         this[name].build_projects = build_projects;
@@ -821,6 +866,7 @@
             create_path = utils.create_path;
         var footer = $$.footer,
             menu_popup = $$.menu_popup;
+        var attribution = $$["emojione-attribution-wrapper"];
         var hide_last_open_popup = core.hide_last_open_popup,
             show_contact_nav = core.show_contact_nav,
             parse_delegation_data = core.parse_delegation_data,
@@ -828,6 +874,7 @@
             show_aboutme_section = core.show_aboutme_section,
             show_works_section = core.show_works_section,
             show_resume = core.show_resume,
+            show_attribution = core.show_attribution,
             highlight_tab = core.highlight_tab;
         // local module vars
         var delegation_actions = {
@@ -843,6 +890,8 @@
                 target.classList.add("nav-current");
                 // show the contact element tab if need be
                 show_contact_nav();
+                // show the emoji attribution.
+                show_attribution();
             },
             /**
              * @description [Shows the about me section.]
@@ -850,6 +899,9 @@
              * @return {Undefined}  [Nothing is returned.]
              */
             nav_home: function(target) {
+                // Hide the attribution.
+                attribution.classList.add("hidden");
+                // show the emoji attribution.
                 show_aboutme_section();
             },
             /**
@@ -858,6 +910,8 @@
              * @return {Undefined}  [Nothing is returned.]
              */
             nav_works: function(target) {
+                // Hide the emoji attribution.
+                attribution.classList.add("hidden");
                 show_works_section();
             },
             /**
@@ -991,12 +1045,17 @@
         // get needed functions/data
         var show_aboutme_section = core.show_aboutme_section,
             show_contact_nav = core.show_contact_nav,
+            show_attribution = core.show_attribution,
             shortnames_2_emoticons = core.shortnames_2_emoticons,
             build_projects = core.build_projects;
         // show the about me section on loaded page
         show_aboutme_section();
         // check if the contact element button should be displayed this is dependant on the presence of the BODY's vertical scrollbar
         show_contact_nav();
+        // show emoji attribution.
+        setTimeout(function() {
+            show_attribution();
+        }, 200);
         // convert the emoticon shortnames to images :)
         shortnames_2_emoticons();
         // build the projects
