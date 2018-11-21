@@ -82,7 +82,6 @@ figure {
 */
 
 hr {
-    -webkit-box-sizing: content-box;
     box-sizing: content-box;
     /* 1 */
     height: 0;
@@ -351,7 +350,6 @@ button:-moz-focusring,
 */
 
 legend {
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     /* 1 */
     color: inherit;
@@ -396,7 +394,6 @@ textarea {
 
 [type="checkbox"],
 [type="radio"] {
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     /* 1 */
     padding: 0;
@@ -522,7 +519,6 @@ template {
 ::after {
     background-repeat: no-repeat;
     /* 1 */
-    -webkit-box-sizing: inherit;
     box-sizing: inherit;
     /* 2 */
 }
@@ -548,7 +544,6 @@ template {
  */
 
 html {
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     /* 1 */
     cursor: default;
@@ -722,15 +717,17 @@ textarea,
 }
 
 body {
-    font: 300 16px Lato;
+    font: 16px Lato;
 }
 
 .portfolio-wrapper {
     display: -webkit-box;
+    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
     height: 100vh;
@@ -742,14 +739,17 @@ body {
 
 .header-wrapper {
     display: -webkit-box;
+    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     width: 100%;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
+    -webkit-flex-flow: row nowrap;
     -ms-flex-flow: row nowrap;
     flex-flow: row nowrap;
     -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
     justify-content: space-between;
 }
@@ -757,6 +757,7 @@ body {
 .header-logo-wrapper {
     font-size: 16px;
     display: -webkit-box;
+    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     width: 36px;
@@ -769,9 +770,11 @@ body {
     border-radius: 40px 100px 0 100px;
     background: #699935;
     -webkit-box-pack: center;
+    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
     -webkit-box-align: center;
+    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
 }
@@ -781,10 +784,12 @@ body {
 
 .nav-wrapper {
     display: -webkit-box;
+    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
+    -webkit-flex-flow: row nowrap;
     -ms-flex-flow: row nowrap;
     flex-flow: row nowrap;
 }
@@ -852,7 +857,6 @@ body {
     border-radius: 4px;
     background: #333;
     background-clip: padding-box;
-    -webkit-box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
@@ -867,7 +871,6 @@ body {
 .popup-item:hover {
     color: #fff;
     background: #69a335;
-    -webkit-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
     box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
 }
 
@@ -891,16 +894,19 @@ body {
 
 .main-content-wrapper {
     display: -webkit-box;
+    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     margin: 50px 0;
     padding-top: 50px !important;
     padding-bottom: 50px !important;
     -webkit-box-flex: 1;
+    -webkit-flex: 1 0 auto;
     -ms-flex: 1 0 auto;
     flex: 1 0 auto;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
+    -webkit-flex-flow: column nowrap;
     -ms-flex-flow: column nowrap;
     flex-flow: column nowrap;
 }
@@ -909,26 +915,36 @@ body {
     padding-top: 20px;
     padding-bottom: 20px;
     display: -webkit-box;
+    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
+    -webkit-flex-flow: row nowrap;
     -ms-flex-flow: row nowrap;
     flex-flow: row nowrap;
     -webkit-box-pack: center;
+    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
 }
 
 .attribution-message-wrapper {
+    padding: 10px 20px;
+    background: #f9f9f9;
+    border-radius: 100px;
     -webkit-box-flex: 0;
+    -webkit-flex: 0 1 auto;
     -ms-flex: 0 1 auto;
     flex: 0 1 auto;
+    -webkit-align-self: center;
     -ms-flex-item-align: center;
     align-self: center;
 }
 
 .attribution-message-text {
+    margin: 0;
+    font-size: 12px;
     color: #666;
 }
 
@@ -943,14 +959,17 @@ body {
 
 .projects-wrapper {
     display: -webkit-box;
+    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     width: 100%;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
+    -webkit-flex-flow: row wrap;
     -ms-flex-flow: row wrap;
     flex-flow: row wrap;
     -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
     justify-content: space-between;
 }
@@ -959,17 +978,18 @@ body {
 /* [messages.styles] */
 
 .message-title {
-    font-size: 35px;
+    font-size: 24px;
     font-weight: 400;
     margin-bottom: 20px;
 }
 
 .message-text {
-    font-size: 23px;
+    font-size: 18px;
     margin: 0 0 20px;
     padding: 0;
     word-wrap: break-word;
     -webkit-hyphens: auto;
+    -moz-hyphens: auto;
     -ms-hyphens: auto;
     hyphens: auto;
     /* [hyphen,word-break](https://justmarkup.com/log/2015/07/dealing-with-long-words-in-css/) */
@@ -1028,9 +1048,11 @@ body {
 
 .lang-wrapper {
     display: -webkit-inline-box;
+    display: -webkit-inline-flex;
     display: -ms-inline-flexbox;
     display: inline-flex;
     -webkit-box-align: center;
+    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
     margin-right: 10px;
@@ -1053,48 +1075,57 @@ body {
 
 .footer-wrapper {
     display: -webkit-box;
+    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     width: 100%;
-    padding: 10px;
+    padding: 7px;
     background: #f2f2f2;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
+    -webkit-flex-flow: row nowrap;
     -ms-flex-flow: row nowrap;
     flex-flow: row nowrap;
     -webkit-box-pack: center;
+    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
 }
 
 .contact-wrapper {
     display: -webkit-box;
+    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     margin-left: 15px;
     padding: 5px 0;
+    font-size: 15px;
 }
 
 .contact-text {
     font-weight: 400;
     display: -webkit-box;
+    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
+    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
     -webkit-box-align: center;
+    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
 }
 
 .footer-icon {
-    font-size: 25px;
+    font-size: 18px;
     margin-right: 5px;
 }
 
 .contact-link {
     display: -webkit-inline-box;
+    display: -webkit-inline-flex;
     display: -ms-inline-flexbox;
     display: inline-flex;
     cursor: pointer;
@@ -1147,10 +1178,12 @@ body {
 
 .flex {
     display: -webkit-box;
+    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
+    -webkit-flex-flow: row nowrap;
     -ms-flex-flow: row nowrap;
     flex-flow: row nowrap;
 }
@@ -1163,6 +1196,7 @@ body {
     /* [https://philipwalton.com/articles/normalizing-cross-browser-flexbox-bugs/]
        [https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/]
      */
+    -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
     flex-shrink: 0;
 }
@@ -1251,12 +1285,6 @@ body {
     .position-center {
         width: 100%;
     }
-    .message-title {
-        font-size: 35px;
-    }
-    .message-text {
-        font-size: 22px;
-    }
 }
 
 @media screen and (min-width:811px) {
@@ -1281,12 +1309,6 @@ body {
     }
     .header-wrapper {
         margin-top: 0;
-    }
-    .message-title {
-        font-size: 28px;
-    }
-    .message-text {
-        font-size: 20px;
     }
 }
 
@@ -1322,22 +1344,15 @@ body {
 
 @media screen and (max-width:425px) {
     .message-title {
-        font-size: 27px;
+        font-size: 20px;
     }
-}
-
-@media screen and (max-width:375px) {
-    .message-title {
-        font-size: 25px;
+    .message-text {
+        font-size: 16px;
     }
 }
 
 @media screen and (max-width:320px) {
-    .message-title {
-        font-size: 23px;
-    }
     .message-text {
-        font-size: 18px;
         padding: 0;
     }
     .message-text-workcallout {

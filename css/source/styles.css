@@ -1,5 +1,5 @@
 body {
-    font: 300 16px Lato;
+    font: 16px Lato;
 }
 
 .portfolio-wrapper {
@@ -159,11 +159,16 @@ body {
 }
 
 .attribution-message-wrapper {
+    padding: 10px 20px;
+    background: #f9f9f9;
+    border-radius: 100px;
     flex: 0 1 auto;
     align-self: center;
 }
 
 .attribution-message-text {
+    margin: 0;
+    font-size: 12px;
     color: #666;
 }
 
@@ -187,13 +192,13 @@ body {
 /* [messages.styles] */
 
 .message-title {
-    font-size: 35px;
+    font-size: 24px;
     font-weight: 400;
     margin-bottom: 20px;
 }
 
 .message-text {
-    font-size: 23px;
+    font-size: 18px;
     margin: 0 0 20px;
     padding: 0;
     word-wrap: break-word;
@@ -276,7 +281,7 @@ body {
 .footer-wrapper {
     display: flex;
     width: 100%;
-    padding: 10px;
+    padding: 7px;
     background: #f2f2f2;
     flex-flow: row nowrap;
     justify-content: center;
@@ -286,6 +291,7 @@ body {
     display: flex;
     margin-left: 15px;
     padding: 5px 0;
+    font-size: 15px;
 }
 
 .contact-text {
@@ -296,7 +302,7 @@ body {
 }
 
 .footer-icon {
-    font-size: 25px;
+    font-size: 18px;
     margin-right: 5px;
 }
 
@@ -435,12 +441,6 @@ body {
     .position-center {
         width: 100%;
     }
-    .message-title {
-        font-size: 35px;
-    }
-    .message-text {
-        font-size: 22px;
-    }
 }
 
 @media screen and (min-width:811px) {
@@ -465,12 +465,6 @@ body {
     }
     .header-wrapper {
         margin-top: 0;
-    }
-    .message-title {
-        font-size: 28px;
-    }
-    .message-text {
-        font-size: 20px;
     }
 }
 
@@ -506,22 +500,16 @@ body {
 
 @media screen and (max-width:425px) {
     .message-title {
-        font-size: 27px;
+        font-size: 20px;
     }
-}
 
-@media screen and (max-width:375px) {
-    .message-title {
-        font-size: 25px;
+    .message-text {
+        font-size: 16px;
     }
 }
 
 @media screen and (max-width:320px) {
-    .message-title {
-        font-size: 23px;
-    }
     .message-text {
-        font-size: 18px;
         padding: 0;
     }
     .message-text-workcallout {
