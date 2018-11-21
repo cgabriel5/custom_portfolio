@@ -10,6 +10,7 @@ app.module("events", function(modules, name) {
         to_real_array = utils.to_real_array,
         create_path = utils.create_path;
     var footer = $$.footer, menu_popup = $$.menu_popup;
+    var attribution = $$["emojione-attribution-wrapper"];
     var hide_last_open_popup = core.hide_last_open_popup,
         show_contact_nav = core.show_contact_nav,
         parse_delegation_data = core.parse_delegation_data,
@@ -17,6 +18,7 @@ app.module("events", function(modules, name) {
         show_aboutme_section = core.show_aboutme_section,
         show_works_section = core.show_works_section,
         show_resume = core.show_resume,
+        show_attribution = core.show_attribution,
         highlight_tab = core.highlight_tab;
 
     // local module vars
@@ -33,6 +35,8 @@ app.module("events", function(modules, name) {
             target.classList.add("nav-current");
             // show the contact element tab if need be
             show_contact_nav();
+            // show the emoji attribution.
+            show_attribution();
         },
         /**
          * @description [Shows the about me section.]
@@ -40,6 +44,9 @@ app.module("events", function(modules, name) {
          * @return {Undefined}  [Nothing is returned.]
          */
         nav_home: function(target) {
+            // Hide the attribution.
+            attribution.classList.add("hidden");
+            // show the emoji attribution.
             show_aboutme_section();
         },
         /**
@@ -48,6 +55,9 @@ app.module("events", function(modules, name) {
          * @return {Undefined}  [Nothing is returned.]
          */
         nav_works: function(target) {
+            // Hide the emoji attribution.
+            attribution.classList.add("hidden");
+
             show_works_section();
         },
         /**

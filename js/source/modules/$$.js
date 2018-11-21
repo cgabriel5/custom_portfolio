@@ -25,4 +25,5 @@ app.module("$$", function(modules, name) {
     this[name]["works_section"] = $("section-works-wrapper");
     this[name]["menu_popup"] = $("popup-menu-wrapper");
     this[name]["projects_wrapper"] = $("projects-wrapper");
+    this[name]["emojione-attribution-wrapper"] = $("emojione-attribution-wrapper");
 });

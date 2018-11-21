@@ -8,6 +8,7 @@ app.module("core", function(modules, name) {
         aboutme_section = $$.aboutme_section,
         works_section = $$.works_section,
         projects_wrapper = $$.projects_wrapper,
+        attribution = $$["emojione-attribution-wrapper"],
         is_vertical_scrollbar_visible = utils.is_vertical_scrollbar_visible,
         to_real_array = utils.to_real_array,
         format = utils.format;
@@ -93,6 +94,19 @@ app.module("core", function(modules, name) {
     function show_resume() {
         // open a new tab to the resume page
         window.open("https://cgabriel5.github.io/resume/");
+    }
+
+    /**
+     * @description [Show the emoji attribution.]
+     * @return {Undefined} [Nothing is returned.]
+     */
+    function show_attribution() {
+        // hide the element.
+        attribution.classList.add("hidden");
+        // show the element.
+        setTimeout(function() {
+            attribution.classList.remove("hidden");
+        }, 0);
     }
 
     /**
@@ -189,6 +203,7 @@ app.module("core", function(modules, name) {
     this[name].show_aboutme_section = show_aboutme_section;
     this[name].show_works_section = show_works_section;
     this[name].show_resume = show_resume;
+    this[name].show_attribution = show_attribution;
     this[name].parse_delegation_data = parse_delegation_data;
     this[name].highlight_tab = highlight_tab;
     this[name].build_projects = build_projects;
