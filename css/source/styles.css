@@ -19,6 +19,12 @@ body {
     justify-content: space-between;
 }
 
+.logo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .header-logo-wrapper {
     font-size: 16px;
     display: flex;
@@ -126,7 +132,7 @@ body {
 .popup-menu-wrapper {
     min-width: 100px;
     margin-left: -105px;
-    margin-top: 7px;
+    margin-top: 5px;
 }
 
 
@@ -482,13 +488,30 @@ body {
 
 @media screen and (max-width:500px) {
     .position-center {
-        padding: 15px;
+        padding: 10px 15px;
     }
     .nav-expanded-wrapper {
         display: none;
     }
     .nav-compact-wrapper {
         display: block;
+        font-size: 18px;
+    }
+    .header-wrapper {
+        border-bottom: 1px solid #dfe2e5;
+        background: white;
+        position: fixed;
+        z-index: 1;
+    }
+    .header-logo-wrapper {
+        width: 18px;
+        height: 18px;
+    }
+    .popup-menu-wrapper {
+        margin-top: 5px;
+    }
+    .main-content-wrapper {
+        margin-top: 40px;
     }
 }
 
