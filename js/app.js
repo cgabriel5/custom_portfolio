@@ -662,7 +662,8 @@
             attribution = $$["emojione-attribution-wrapper"],
             is_vertical_scrollbar_visible = utils.is_vertical_scrollbar_visible,
             to_real_array = utils.to_real_array,
-            format = utils.format;
+            format = utils.format,
+            create_path = utils.create_path;
         /**
          * @description [Shows the contact tab. Depends on the is_vertical_scrollbar_visible() function.]
          * @return {Undefined}  [Nothing is returned.]
@@ -784,6 +785,25 @@
          * @return {Undefined}  [Nothing is returned.]
          */
         function highlight_tab(target_element) {
+            // Quick fix patch: If the provided target does not have the needed
+            // attributes check the parents for it.
+            if (!target_element.getAttribute("data-syncid")) {
+                var element_path = create_path({
+                    target: target_element
+                });
+                var delegate = null;
+                // Check the parent elements.
+                for (var i = 0, l = element_path.length; i < l; i++) {
+                    // Cache current loop item.
+                    var parent = element_path[i];
+                    if (parent.getAttribute("data-syncid")) {
+                        delegate = parent;
+                        break;
+                    }
+                }
+                // If the delegate parent exists reset the var.
+                if (delegate) target_element = delegate;
+            }
             // highlight clicked nav-item
             document.getElementById(target_element.getAttribute("data-syncid"))
                 .classList.add("nav-current");
