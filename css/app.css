@@ -892,7 +892,7 @@ body {
 .popup-menu-wrapper {
     min-width: 100px;
     margin-left: -105px;
-    margin-top: 5px;
+    margin-top: 4px;
 }
 
 
@@ -1359,9 +1359,6 @@ body {
     .header-logo-wrapper {
         width: 18px;
         height: 18px;
-    }
-    .popup-menu-wrapper {
-        margin-top: 5px;
     }
     .main-content-wrapper {
         margin-top: 40px;
