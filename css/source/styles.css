@@ -88,7 +88,7 @@ body {
     display: none;
     cursor: pointer;
     border-radius: 4px;
-    padding: 0 8px;
+    padding: 6px 16px;
     margin-right: -8px;
 }
 
@@ -130,9 +130,10 @@ body {
 }
 
 .popup-menu-wrapper {
-    min-width: 100px;
-    margin-left: -105px;
-    margin-top: 4px;
+    /*min-width: 100px;*/
+    min-width: auto;
+    margin-left: -80px;
+    margin-top: 9px;
 }
 
 
@@ -488,7 +489,7 @@ body {
 
 @media screen and (max-width:500px) {
     .position-center {
-        padding: 10px 15px;
+        padding: 4px 15px;
     }
     .nav-expanded-wrapper {
         display: none;
@@ -499,17 +500,17 @@ body {
     }
     .header-wrapper {
         border-bottom: 1px solid #dfe2e5;
-        background: white;
+/*        background: white;
         position: fixed;
-        z-index: 1;
+        z-index: 1;*/
     }
     .header-logo-wrapper {
         width: 18px;
         height: 18px;
     }
-    .main-content-wrapper {
+/*    .main-content-wrapper {
         margin-top: 40px;
-    }
+    }*/
 }
 
 @media screen and (min-width:500px) {
