@@ -102,7 +102,7 @@ body {
 .popup {
     position: absolute;
     z-index: 1;
-    min-width: 200px;
+    /*min-width: 200px;*/
     padding: 4px 0;
     cursor: default;
     text-align: left;
@@ -131,8 +131,8 @@ body {
 
 .popup-menu-wrapper {
     /*min-width: 100px;*/
-    min-width: auto;
-    margin-left: -80px;
+    /*min-width: auto;*/
+    margin-left: -100px;
     margin-top: 9px;
 }
 
@@ -513,7 +513,7 @@ body {
     }*/
 }
 
-@media screen and (min-width:500px) {
+@media screen and (min-width:501px) {
     .hide500plus {
         display: none;
     }
