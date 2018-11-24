@@ -132,6 +132,7 @@ body {
 .popup-menu-wrapper {
     /*min-width: 100px;*/
     /*min-width: auto;*/
+    width: 110px;
     margin-left: -100px;
     margin-top: 9px;
 }
