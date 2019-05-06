@@ -7,6 +7,20 @@ app.module("globals", function(modules, name) {
      */
     var projects = [
         {
+            title: "nodecliac",
+            dates: "2019",
+            description: "A simple definition based bash tab auto-completion tool.",
+            url: "https://github.com/cgabriel5/nodecliac",
+            langs: ["JavaScript", "Perl", "Bash"]
+        },
+        {
+            title: "clone-repo",
+            dates: "2019",
+            description: "Clones a public GitHub, GitLab, or BitBucket repo from the CLI using a simple, unified API.",
+            url: "https://github.com/cgabriel5/clone-repo",
+            langs: ["JavaScript"]
+        },
+        {
             title: "devdocs",
             dates: "2018-Present",
             description: "A static website documentation generator.",
@@ -402,6 +416,7 @@ app.module("globals", function(modules, name) {
         SCSS: "#CF649A",
         Self: "#0579aa",
         Shell: "#89e051",
+        Bash: "#89e051",
         ShellSession: null,
         Shen: "#120F14",
         Slash: "#007eff",
