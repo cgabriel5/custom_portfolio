@@ -25,7 +25,7 @@ app.module("globals", function(modules, name) {
             dates: "2018-Present",
             description: "A static website documentation generator.",
             url: "https://github.com/cgabriel5/devdocs",
-            langs: ["JavaScript"]
+            langs: ["HTML", "CSS", "JavaScript"]
         },
         {
             title: "wapplr-webpack-gulp",
